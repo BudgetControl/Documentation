@@ -1,0 +1,214 @@
+openapi: 3.0.0
+info:
+  title: Budget Control APIs
+  version: 1.0.0
+paths:
+  /api/auth/authenticate:
+    post:
+      summary: Authenticate user
+      description: Authenticate user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: User email
+                password:
+                  type: string
+                  description: User password
+        
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates if the authentication was successful
+                  message:
+                    type: string
+                    description: A message indicating the result of the authentication
+                  token:
+                    type: string
+                    description: The authentication token
+                  workspaces:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        uuid:
+                          type: string
+                          description: The UUID of the workspace
+                        name:
+                          type: string
+                          description: The name of the workspace
+                        description:
+                          type: string
+                          description: The description of the workspace
+                        current:
+                          type: integer
+                          description: Indicates if the workspace is the current one
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: The creation date of the workspace
+                        updated_at:
+                          type: string
+                          format: date-time
+                          description: The last update date of the workspace
+                        deleted_at:
+                          type: string
+                          format: date-time
+                          description: The deletion date of the workspace
+                        user_id:
+                          type: integer
+                          description: The ID of the user associated with the workspace
+    servers:
+      - url: https://dev.app.budgetcontrol.cloud
+
+  /api/auth/user-info:
+    get:
+      summary: Get user information
+      description: Retrieve user information
+      parameters:
+        - name: X-ws
+          in: header
+          description: The UUID of the workspace
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          headers:
+            X-Bc-Token:
+              description: JWT token with user account
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      uuid:
+                        type: string
+                        description: The UUID of the user
+                      name:
+                        type: string
+                        description: The name of the user
+                      email:
+                        type: string
+                        description: The email of the user
+                      email_verified_at:
+                        type: string
+                        format: date-time
+                        description: The date and time when the email was verified
+                      created_at:
+                        type: string
+                        format: date-time
+                        description: The creation date of the user
+                      updated_at:
+                        type: string
+                        format: date-time
+                        description: The last update date of the user
+                      deleted_at:
+                        type: string
+                        format: date-time
+                        description: The deletion date of the user
+                      sub:
+                        type: string
+                        description: The sub claim of the user
+                  workspaces:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: The ID of the workspace
+                        uuid:
+                          type: string
+                          description: The UUID of the workspace
+                        name:
+                          type: string
+                          description: The name of the workspace
+                        description:
+                          type: string
+                          description: The description of the workspace
+                        current:
+                          type: integer
+                          description: Indicates if the workspace is the current one
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: The creation date of the workspace
+                        updated_at:
+                          type: string
+                          format: date-time
+                          description: The last update date of the workspace
+                        deleted_at:
+                          type: string
+                          format: date-time
+                          description: The deletion date of the workspace
+                        user_id:
+                          type: integer
+                          description: The ID of the user associated with the workspace
+                  current_ws:
+                    type: string
+                    description: The UUID of the current workspace
+                  workspace_settings:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: The ID of the workspace setting
+                      workspace_id:
+                        type: integer
+                        description: The ID of the workspace
+                      setting:
+                        type: string
+                        description: The setting name
+                      data:
+                        type: string
+                        description: The setting data
+                      created_at:
+                        type: string
+                        format: date-time
+                        description: The creation date of the workspace setting
+                      updated_at:
+                        type: string
+                        format: date-time
+                        description: The last update date of the workspace setting
+                      deleted_at:
+                        type: string
+                        format: date-time
+                        description: The deletion date of the workspace setting
+                  shared_with:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                          description: The email of the user the workspace is shared with
+                        name:
+                          type: string
+                          description: The name of the user the workspace is shared with
+        
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,428 @@
+openapi: 3.0.0
+info:
+  title: Budget Control API
+  version: 1.0.0
+servers:
+  - url: https://dev.app.budgetcontrol.cloud
+paths:
+  /api/workspace/list:
+    get:
+      summary: Get list of workspaces
+      description: Retrieve list of workspaces
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          description: JWT token with user account
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  workspaces:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: ID of the workspace
+                          example: 7
+                        uuid:
+                          type: string
+                          description: Universally Unique Identifier
+                          example: 2c403243-4a94-43b8-99ee-72fa99f1ef43
+                        name:
+                          type: string
+                          description: Name of the workspace
+                          example: Risparmi
+                        description:
+                          type: string
+                          description: Description of the workspace
+                          example: null
+                        current:
+                          type: integer
+                          description: Current value
+                          example: 0
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: Date and time the workspace was created
+                          example: 2024-05-15T14:25:44.000000Z
+                        updated_at:
+                          type: string
+                          format: date-time
+                          description: Date and time the workspace was last updated
+                          example: 2024-07-02T09:51:14.000000Z
+                        deleted_at:
+                          type: string
+                          format: date-time
+                          description: Date and time the workspace was deleted
+                          example: null
+                        user_id:
+                          type: integer
+                          description: ID of the user
+                          example: 1
+                        users:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                description: ID of the user
+                                example: 1
+                              uuid:
+                                type: string
+                                description: Universally Unique Identifier
+                                example: 65ba811aabd8a
+                              name:
+                                type: string
+                                description: Name of the user
+                                example: Marco
+                              email:
+                                type: string
+                                description: Email of the user
+                                example: 5CW3pKwUNG5ubDtY4FhWoYdHxExR92bWGdKrpc+UWM4=
+                              email_verified_at:
+                                type: string
+                                format: date-time
+                                description: Date and time the email was verified
+                                example: 2024-01-31T18:19:44.000000Z
+                              created_at:
+                                type: string
+                                format: date-time
+                                description: Date and time the user was created
+                                example: 2024-01-31T18:19:22.000000Z
+                              updated_at:
+                                type: string
+                                format: date-time
+                                description: Date and time the user was last updated
+                                example: 2024-06-21T20:34:10.000000Z
+                              deleted_at:
+                                type: string
+                                format: date-time
+                                description: Date and time the user was deleted
+                                example: null
+                              sub:
+                                type: string
+                                description: Subject of the user
+                                example: 3df00db8-d946-412f-8a06-95d0b48c8bb2
+                              pivot:
+                                type: object
+                                properties:
+                                  workspace_id:
+                                    type: integer
+                                    description: ID of the workspace
+                                    example: 7
+                                  user_id:
+                                    type: integer
+                                    description: ID of the user
+                                    example: 1
+                  settings:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: ID of the settings
+                          example: 8
+                        workspace_id:
+                          type: integer
+                          description: ID of the workspace
+                          example: 7
+                        setting:
+                          type: string
+                          description: Setting name
+                          example: app_configurations
+                        data:
+                          type: object
+                          properties:
+                            currency_id:
+                              type: integer
+                              description: ID of the currency
+                              example: 1
+                            payment_type_id:
+                              type: integer
+                              description: ID of the payment type
+                              example: 1
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: Date and time the settings were created
+                          example: 2024-05-15T14:25:44.000000Z
+                        updated_at:
+                          type: string
+                          format: date-time
+                          description: Date and time the settings were last updated
+                          example: 2024-05-15T14:25:44.000000Z
+                        deleted_at:
+                          type: string
+                          format: date-time
+                          description: Date and time the settings were deleted
+                          example: null
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: ID of the user
+                        example: 1
+                      uuid:
+                        type: string
+                        description: Universally Unique Identifier
+                        example: 65ba811aabd8a
+                      name:
+                        type: string
+                        description: Name of the user
+                        example: Marco
+                      email:
+                        type: string
+                        description: Email of the user
+                        example: 5CW3pKwUNG5ubDtY4FhWoYdHxExR92bWGdKrpc+UWM4=
+                      email_verified_at:
+                        type: string
+                        format: date-time
+                        description: Date and time the email was verified
+                        example: 2024-01-31T18:19:44.000000Z
+                      created_at:
+                        type: string
+                        format: date-time
+                        description: Date and time the user was created
+                        example: 2024-01-31T18:19:22.000000Z
+                      updated_at:
+                        type: string
+                        format: date-time
+                        description: Date and time the user was last updated
+                        example: 2024-06-21T20:34:10.000000Z
+                      deleted_at:
+                        type: string
+                        format: date-time
+                        description: Date and time the user was deleted
+                        example: null
+                      sub:
+                        type: string
+                        description: Subject of the user
+                        example: 3df00db8-d946-412f-8a06-95d0b48c8bb2
+  /api/workspace/{uuid}:
+    get:
+      summary: Get workspace by UUID
+      description: Retrieve workspace by UUID
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          description: JWT token with user account
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  workspace:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: ID of the workspace
+                        example: 7
+                      uuid:
+                        type: string
+                        description: Universally Unique Identifier
+                        example: 2c403243-4a94-43b8-99ee-72fa99f1ef43
+                      name:
+                        type: string
+                        description: Name of the workspace
+                        example: Risparmi
+                      description:
+                        type: string
+                        description: Description of the workspace
+                        example: null
+                      current:
+                        type: integer
+                        description: Current value
+                        example: 0
+                      created_at:
+                        type: string
+                        format: date-time
+                        description: Date and time the workspace was created
+                        example: 2024-05-15T14:25:44.000000Z
+                      updated_at:
+                        type: string
+                        format: date-time
+                        description: Date and time the workspace was last updated
+                        example: 2024-07-02T09:51:14.000000Z
+                      deleted_at:
+                        type: string
+                        format: date-time
+                        description: Date and time the workspace was deleted
+                        example: null
+                      user_id:
+                        type: integer
+                        description: ID of the user
+                        example: 1
+                      users:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              description: ID of the user
+                              example: 1
+                            uuid:
+                              type: string
+                              description: Universally Unique Identifier
+                              example: 65ba811aabd8a
+                            name:
+                              type: string
+                              description: Name of the user
+                              example: Marco
+                            email:
+                              type: string
+                              description: Email of the user
+                              example: 5CW3pKwUNG5ubDtY4FhWoYdHxExR92bWGdKrpc+UWM4=
+                            email_verified_at:
+                              type: string
+                              format: date-time
+                              description: Date and time the email was verified
+                              example: 2024-01-31T18:19:44.000000Z
+                            created_at:
+                              type: string
+                              format: date-time
+                              description: Date and time the user was created
+                              example: 2024-01-31T18:19:22.000000Z
+                            updated_at:
+                              type: string
+                              format: date-time
+                              description: Date and time the user was last updated
+                              example: 2024-06-21T20:34:10.000000Z
+                            deleted_at:
+                              type: string
+                              format: date-time
+                              description: Date and time the user was deleted
+                              example: null
+                            sub:
+                              type: string
+                              description: Subject of the user
+                              example: 3df00db8-d946-412f-8a06-95d0b48c8bb2
+                            pivot:
+                              type: object
+                              properties:
+                                workspace_id:
+                                  type: integer
+                                  description: ID of the workspace
+                                  example: 7
+                                user_id:
+                                  type: integer
+                                  description: ID of the user
+                                  example: 1
+                  settings:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: ID of the settings
+                        example: 8
+                      workspace_id:
+                        type: integer
+                        description: ID of the workspace
+                        example: 7
+                      setting:
+                        type: string
+                        description: Setting name
+                        example: app_configurations
+                      data:
+                        type: object
+                        properties:
+                          currency_id:
+                            type: integer
+                            description: ID of the currency
+                            example: 1
+                          payment_type_id:
+                            type: integer
+                            description: ID of the payment type
+                            example: 1
+                      created_at:
+                        type: string
+                        format: date-time
+                        description: Date and time the settings were created
+                        example: 2024-05-15T14:25:44.000000Z
+                      updated_at:
+                        type: string
+                        format: date-time
+                        description: Date and time the settings were last updated
+                        example: 2024-05-15T14:25:44.000000Z
+                      deleted_at:
+                        type: string
+                        format: date-time
+                        description: Date and time the settings were deleted
+                        example: null
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: ID of the user
+                        example: 1
+                      uuid:
+                        type: string
+                        description: Universally Unique Identifier
+                        example: 65ba811aabd8a
+                      name:
+                        type: string
+                        description: Name of the user
+                        example: Marco
+                      email:
+                        type: string
+                        description: Email of the user
+                        example: 5CW3pKwUNG5ubDtY4FhWoYdHxExR92bWGdKrpc+UWM4=
+                      email_verified_at:
+                        type: string
+                        format: date-time
+                        description: Date and time the email was verified
+                        example: 2024-01-31T18:19:44.000000Z
+                      created_at:
+                        type: string
+                        format: date-time
+                        description: Date and time the user was created
+                        example: 2024-01-31T18:19:22.000000Z
+                      updated_at:
+                        type: string
+                        format: date-time
+                        description: Date and time the user was last updated
+                        example: 2024-06-21T20:34:10.000000Z
+                      deleted_at:
+                        type: string
+                        format: date-time
+                        description: Date and time the user was deleted
+                        example: null
+                      sub:
+                        type: string
+                        description: Subject of the user
+                        example: 3df00db8-d946-412f-8a06-95d0b48c8bb2
+                  hash:
+                    type: string
+                    description: Hash value
+                    example: 1f8a6d41-2712-407b-ab58-fa6b390f45a9
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

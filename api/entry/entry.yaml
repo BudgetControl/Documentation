@@ -1,0 +1,55 @@
+openapi: 3.0.0
+info:
+  title: Budget Control APIs
+  version: 1.0.0
+paths:
+  /api/entry:
+    get:
+      summary: Get list of entries
+      description: Retrieve list of entries
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          description: JWT token with user acoount
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            example: 1
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                properties:
+                    uuid: 
+                      type: string
+                      description: Universally Unique Identifier
+                      example: 123e4567-e89b-12d3-a456-426614174000
+                    name:
+                      type: string
+                      description: Name of the workspace
+                      example: My Workspace
+                    updated_at:
+                      type: string
+                      format: date-time
+                      description: Date and time the workspace was last updated
+                      example: 2021-07-01T00:00:00Z
+    servers:
+      - url: https://dev.app.budgetcontrol.cloud
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
