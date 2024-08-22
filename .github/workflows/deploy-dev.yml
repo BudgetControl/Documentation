@@ -32,7 +32,7 @@ jobs:
               password: ${{ secrets.SFTP_PASSWORD }}
               port: ${{ secrets.SFTP_PORT }} 
               local_path: './build/*'
-              remote_path: '/var/www/apps/budgetcontrol/Docusaurus/build'
+              remote_path: '/var/www/budgetcontrol/Docusaurus/build'
               sftpArgs: '-o ConnectTimeout=5'
 
         - name: copy build folder into container
@@ -42,5 +42,5 @@ jobs:
             username: ${{ secrets.SFTP_USER }}
             password: ${{ secrets.SFTP_PASSWORD }}
             port: ${{ secrets.SFTP_PORT }}
-            script: docker cp /var/www/apps/budgetcontrol/Docusaurus/build/. budgetcontrol-Docusaurus:/var/www/workdir/build/
+            script: docker cp /var/www/budgetcontrol/Docusaurus/build/. budgetcontrol-Docusaurus:/var/www/workdir/build/
   
