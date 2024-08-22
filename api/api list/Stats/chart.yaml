@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: "Budget Control API"
+  title: chart
   version: 1.0.0
 paths:
 

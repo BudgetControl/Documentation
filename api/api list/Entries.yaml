@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Budget Control APIs
+  title: entries
   version: 1.0.0
 paths:
   /api/entry:

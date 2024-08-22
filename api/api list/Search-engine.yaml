@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Budget Control API
+  title: "search-engine"
   version: 1.0.0
 servers:
   - url: https://dev.app.budgetcontrol.cloud

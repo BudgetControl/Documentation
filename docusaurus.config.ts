@@ -72,17 +72,12 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Links',
           items: [
             {
               label: 'Docs',
               to: '/docs/intro',
             },
-          ],
-        },
-        {
-          title: 'API',
-          items: [
             {
               label: 'API',
               to: '/api',
