@@ -1,0 +1,207 @@
+openapi: 3.0.0
+info:
+  title: "search-engine"
+  version: 1.0.0
+servers:
+  - url: https://dev.app.budgetcontrol.cloud
+paths:
+  /api/find:
+    post:
+      summary: Find data
+      description: Find data in the system
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: object
+                  properties:
+                    account:
+                      type: array
+                      items:
+                        type: integer
+                      description: Account IDs
+                    category:
+                      type: array
+                      items:
+                        type: integer
+                      description: Category IDs
+                    type:
+                      type: array
+                      items:
+                        type: string
+                      description: Entry types
+                    tags:
+                      type: array
+                      items:
+                        type: integer
+                      description: Tag IDs
+                    text:
+                      type: string
+                      description: Text to search
+                    planned:
+                      type: string
+                      description: Planned flag
+                    date_time:
+                      type: array
+                      items:
+                        type: string
+                        format: date-time
+                      description: Date and time range
+                  description: Query to search
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    uuid:
+                      type: string
+                      example: "cb445ee9-d428-432f-a13c-34d148101c02"
+                    date_time:
+                      type: string
+                      format: date-time
+                      example: "2024-07-02 11:50:15"
+                    amount:
+                      type: number
+                      format: float
+                      example: -27.97
+                    note:
+                      type: string
+                      example: "piante INS"
+                    type:
+                      type: string
+                      example: "expenses"
+                    waranty:
+                      type: boolean
+                      example: false
+                    transfer:
+                      type: boolean
+                      example: false
+                    confirmed:
+                      type: boolean
+                      example: true
+                    planned:
+                      type: boolean
+                      example: false
+                    installment:
+                      type: integer
+                      example: 0
+                    model_id:
+                      type: integer
+                      nullable: true
+                      example: null
+                    account:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: "EGO ( (0903)"
+                    transfer_id:
+                      type: integer
+                      nullable: true
+                      example: null
+                    transfer_relation:
+                      type: integer
+                      nullable: true
+                      example: null
+                    currency:
+                      type: object
+                      properties:
+                        slug:
+                          type: string
+                          example: "euro"
+                        icon:
+                          type: string
+                          example: "€"
+                    sub_category:
+                      type: object
+                      properties:
+                        slug:
+                          type: string
+                          example: "home_garden"
+                        id:
+                          type: integer
+                          example: 8
+                        category:
+                          type: object
+                          properties:
+                            icon:
+                              type: string
+                              example: "fas fa-shopping-cart"
+                    payment_type:
+                      type: integer
+                      example: 1
+                    payee_id:
+                      type: integer
+                      nullable: true
+                      example: null
+                    geolocation:
+                      type: string
+                      nullable: true
+                      example: null
+                    workspace_id:
+                      type: integer
+                      example: 1
+                    exclude_from_stats:
+                      type: boolean
+                      example: false
+                    payee:
+                      type: string
+                      nullable: true
+                      example: null
+                    label:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 394
+                          created_at:
+                            type: string
+                            format: date-time
+                            example: "2024-06-30T21:48:05.000000Z"
+                          updated_at:
+                            type: string
+                            format: date-time
+                            example: "2024-06-30T21:48:05.000000Z"
+                          date_time:
+                            type: string
+                            format: date-time
+                            example: "2024-06-30 19:48:22"
+                          uuid:
+                            type: string
+                            example: "430fff43-a005-4bec-bf94-8cf237cb9464"
+                          name:
+                            type: string
+                            example: "compleanno-joshua"
+                          color:
+                            type: string
+                            example: "#dd51db"
+                          deleted_at:
+                            type: string
+                            nullable: true
+                            example: null
+                          archive:
+                            type: integer
+                            example: 0
+                          workspace_id:
+                            type: integer
+                            example: 1
+                          pivot:
+                            type: object
+                            properties:
+                              entry_id:
+                                type: integer
+                                example: 36521
+                              labels_id:
+                                type: integer
+                                example: 394

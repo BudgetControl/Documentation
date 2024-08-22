@@ -1,0 +1,286 @@
+openapi: 3.0.0
+info:
+  title: Stats
+  version: 1.0.0
+paths:
+  /api/stats/total:
+    get:
+      summary: Get total stats
+      description: Retrieve total statistics
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          description: JWT token with user acoount
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          description: UUID of the workspace
+          required: true
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: number
+                    example: 4158.24
+    servers:
+      - url: https://dev.app.budgetcontrol.cloud
+
+  /api/stats/expenses:
+    get:
+      summary: Get expenses stats
+      description: Retrieve expenses statistics
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          description: JWT token with user acoount
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          description: UUID of the workspace
+          required: true
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  percentage:
+                    type: integer
+                    example: -6687
+                  total:
+                    type: number
+                    example: -51.47
+                  total_passed:
+                    type: number
+                    example: -3493.11
+    servers:
+      - url: https://dev.app.budgetcontrol.cloud
+
+  /api/stats/wallets:
+    get:
+      summary: Get wallets stats
+      description: Retrieve wallets statistics
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          description: JWT token with user acoount
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          description: UUID of the workspace
+          required: true
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: Unique identifier for the account
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: Date and time the account was created
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: Date and time the account was last updated
+                  date_time:
+                    type: string
+                    format: date-time
+                    description: Date and time (potentially combined)
+                  uuid:
+                    type: string
+                    description: Universally Unique Identifier
+                  name:
+                    type: string
+                    description: Name of the account
+                  color:
+                    type: string
+                    description: Account color
+                  deleted_at:
+                    type: string
+                    format: date-time
+                    description: Date and time the account was deleted (null if not deleted)
+                  date:
+                    type: string
+                    format: date
+                    description: Date (independent of time)
+                  type:
+                    type: string
+                    description: Type of account (Cash, Bank, Credit Card Revolving, Investment)
+                  installement:
+                    type: integer
+                    description: Number of installments (0 if not applicable)
+                  installementValue:
+                    type: number
+                    description: Value of each installment (0 if not applicable)
+                  currency:
+                    type: string
+                    description: Currency code (reference needed for interpretation)
+                  balance:
+                    type: number
+                    description: Current balance of the account
+                  exclude_from_stats:
+                    type: integer
+                    description: Flag indicating if excluded from statistics (0=included, 1=excluded)
+                  sorting:
+                    type: integer
+                    description: Sorting order for the account in the UI
+                  workspace_id:
+                    type: integer
+                    description: ID of the workspace the account belongs to
+    
+  /api/stats/planned:
+    get:
+      summary: Get wallets stats
+      description: Retrieve wallets statistics
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          description: JWT token with user acoount
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          description: UUID of the workspace
+          required: true
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    description: Total planned entries
+    
+  /api/stats/health:
+    get:
+        summary: Get wallets health
+        description: Retrieve wallets health
+        parameters:
+          - name: X-Bc-Token
+            in: header
+            description: JWT token with user acoount
+            required: true
+            schema:
+              type: string
+          - name: X-Bc-Ws
+            in: header
+            description: UUID of the workspace
+            required: true
+            schema:
+              type: string
+        security:
+          - bearerAuth: []
+        responses:
+          '200':
+            description: Successful response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    total:
+                      type: integer
+                      description: Stats of wallet health
+
+  /api/stats/incoming:
+    get:
+        summary: Get incoming stats
+        description: Retrieve incoming statistics
+        parameters:
+          - name: X-Bc-Token
+            in: header
+            description: JWT token with user acoount
+            required: true
+            schema:
+              type: string
+          - name: X-Bc-Ws
+            in: header
+            description: UUID of the workspace
+            required: true
+            schema:
+              type: string
+          - name: start_date
+            in: query
+            description: Start date
+            required: false
+            schema:
+              type: string
+              format: date-time
+              example: 2021-07-01T00:00:00Z
+          - name: end_date
+            in: query
+            description: End date
+            required: false
+            schema:
+              type: string
+              format: date-time
+              example: 2021-07-31T23:59:59Z
+        security:
+          - bearerAuth: []
+        responses:
+          '200':
+            description: Successful response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    percentage:
+                      type: integer
+                      description: Percentage of incoming entries
+                    total:
+                      type: integer
+                      description: Total incoming entries
+                    total_passed:
+                      type: integer
+                      description: Total passed incoming entries
+    servers:
+      - url: https://dev.app.budgetcontrol.cloud
+
+security:
+  - BearerAuth: []
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

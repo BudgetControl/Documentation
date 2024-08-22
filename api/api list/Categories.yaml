@@ -1,0 +1,552 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: categories
+paths:
+  /api/categories:
+    get:
+      summary: Get categories
+      description: Retrieve a list of categories
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    date_time:
+                      type: string
+                      format: date-time
+                    uuid:
+                      type: string
+                    name:
+                      type: string
+                    icon:
+                      type: string
+                    type:
+                      type: string
+                    slug:
+                      type: string
+                    sub_category:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          date_time:
+                            type: string
+                            format: date-time
+                          uuid:
+                            type: string
+                          name:
+                            type: string
+                          category_id:
+                            type: integer
+                          custom:
+                            type: integer
+                          exclude_from_stats:
+                            type: integer
+                          slug:
+                            type: string
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+
+  /api/currencies:
+    get:
+      summary: Get currencies
+      description: Retrieve a list of currencies
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    date_time:
+                      type: string
+                      format: date-time
+                    uuid:
+                      type: string
+                    name:
+                      type: string
+                    exchange_rate:
+                      type: number
+                    icon:
+                      type: string
+                    label:
+                      type: string
+                    slug:
+                      type: string
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+
+  /api/accounts:
+    get:
+      summary: Get accounts
+      description: Retrieve a list of accounts
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    balance:
+                      type: number
+                    color:
+                      type: string
+                    currency:
+                      type: string
+                    date_time:
+                      type: string
+                      format: date-time
+                    deleted_at:
+                      type: string
+                      format: date-time
+                    exclude_from_stats:
+                      type: integer
+                    id:
+                      type: integer
+                    installement:
+                      type: integer
+                    installementValue:
+                      type: number
+                    name:
+                      type: string
+                    sorting:
+                      type: integer
+                    type:
+                      type: string
+                    uuid:
+                      type: string
+                    workspace_id:
+                      type: integer
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+
+  /api/labels:
+    get:
+      summary: Get labels
+      description: Retrieve a list of labels
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    archive:
+                      type: integer
+                    date_time:
+                      type: string
+                      format: date-time
+                    color:
+                      type: string
+                    name:
+                      type: string
+                    id:
+                      type: integer
+                    workspace_id:
+                      type: integer
+                    uuid:
+                      type: string
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+
+  /api/paymentstype:
+    get:
+      summary: Get payment types
+      description: Retrieve a list of payment types
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    date_time:
+                      type: string
+                      format: date-time
+                    uuid:
+                      type: string
+                    name:
+                      type: string
+                    slug:
+                      type: string
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+
+  /api/model:
+    get:
+      summary: Get model
+      description: Retrieve a list of models
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 36
+                    uuid:
+                      type: string
+                      example: "e26b088f-0dd9-42ae-8b68-9161884724c9"
+                    name:
+                      type: string
+                      example: "AMAZON"
+                    amount:
+                      type: number
+                      format: float
+                      example: -6.97
+                    note:
+                      type: string
+                      nullable: true
+                      example: null
+                    type:
+                      type: string
+                      example: "expenses"
+                    category_id:
+                      type: integer
+                      example: 75
+                    account_id:
+                      type: integer
+                      example: 31
+                    currency_id:
+                      type: integer
+                      example: 2
+                    payment_type:
+                      type: integer
+                      example: 1
+                    deleted_at:
+                      type: string
+                      format: date-time
+                      nullable: true
+                      example: null
+                    workspace_id:
+                      type: integer
+                      example: 1
+                    label:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 51
+                          date_time:
+                            type: string
+                            format: date-time
+                            example: "2023-05-07 12:03:41"
+                          uuid:
+                            type: string
+                            example: "63639be495f9b"
+                          name:
+                            type: string
+                            example: "amazon"
+                          color:
+                            type: string
+                            example: "#418B3C"
+                          archive:
+                            type: integer
+                            example: 0
+                          workspace_id:
+                            type: integer
+                            example: 1
+                          pivot:
+                            type: object
+                            properties:
+                              models_id:
+                                type: integer
+                                example: 36
+                              labels_id:
+                                type: integer
+                                example: 51
+                    sub_category:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 75
+                        date_time:
+                          type: string
+                          format: date-time
+                          example: "1970-01-01 10:00:00"
+                        uuid:
+                          type: string
+                          example: "635bd34d25f01"
+                        name:
+                          type: string
+                          example: "other"
+                        category_id:
+                          type: integer
+                          example: 11
+                        custom:
+                          type: integer
+                          example: 0
+                        exclude_from_stats:
+                          type: integer
+                          example: 0
+                        slug:
+                          type: string
+                          example: "other"
+                        category:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 11
+                            date_time:
+                              type: string
+                              format: date-time
+                              example: "2023-05-07 12:03:37"
+                            uuid:
+                              type: string
+                              example: "635bd34d0dfc4"
+                            name:
+                              type: string
+                              example: "Other"
+                            icon:
+                              type: string
+                              example: "fas fa-question"
+                            type:
+                              type: string
+                              example: "expenses"
+                            slug:
+                              type: string
+                              example: "other"
+                    account:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 31
+                        date_time:
+                          type: string
+                          format: date-time
+                          example: "2023-05-07 12:03:35"
+                        uuid:
+                          type: string
+                          example: "63639be44d9c3"
+                        name:
+                          type: string
+                          example: "amexpayback"
+                        color:
+                          type: string
+                          example: "#0090ffa8"
+                        deleted_at:
+                          type: string
+                          format: date-time
+                          nullable: true
+                          example: null
+                        date:
+                          type: string
+                          format: date-time
+                          example: "2023-06-19 22:58:00"
+                        type:
+                          type: string
+                          example: "Credit Card Revolving"
+                        installement:
+                          type: integer
+                          example: 1
+                        installementValue:
+                          type: number
+                          format: float
+                          example: -1000
+                        currency:
+                          type: string
+                          example: "2"
+                        balance:
+                          type: number
+                          format: float
+                          example: -4691.11
+                        exclude_from_stats:
+                          type: integer
+                          example: 0
+                        sorting:
+                          type: integer
+                          example: 4
+                        workspace_id:
+                          type: integer
+                          example: 1
+                    currency:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 2
+                        date_time:
+                          type: string
+                          format: date-time
+                          example: "2023-12-04 17:55:57"
+                        uuid:
+                          type: string
+                          example: "656e12ad3f761"
+                        name:
+                          type: string
+                          example: "Euro"
+                        label:
+                          type: string
+                          example: "EUR"
+                        icon:
+                          type: string
+                          example: "€"
+                        exchange_rate:
+                          type: number
+                          format: float
+                          nullable: true
+                          example: null
+                        slug:
+                          type: string
+                          example: "euro"
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+
+  /api/payee:
+    get:
+      summary: Get payee
+      description: Retrieve a list of payee
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 14
+                    uuid:
+                      type: string
+                      example: "65b2246bd0220"
+                    name:
+                      type: string
+                      example: "Joshua"
+                    date_time:
+                      type: string
+                      format: date-time
+                      example: "2024-01-25 10:05:47"
+                    workspace_id:
+                      type: integer
+                      example: 1
+                    entry:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 35394
+                          date_time:
+                            type: string
+                            format: date-time
+                            example: "2024-01-25 10:05:08"
+                          uuid:
+                            type: string
+                            example: "65b2246bdf076"
+                          amount:
+                            type: number
+                            example: 10
+                          note:
+                            type: string
+                            example: "Pagherò per asilo nido"
+                          type:
+                            type: string
+                            example: "debit"
+                          waranty:
+                            type: integer
+                            example: 0
+                          transfer:
+                            type: integer
+                            example: 0
+                          confirmed:
+                            type: integer
+                            example: 1
+                          planned:
+                            type: integer
+                            example: 0
+                          installment:
+                            type: integer
+                            example: 0
+                          category_id:
+                            type: integer
+                            example: 55
+                          model_id:
+                            type: integer
+                            example: null
+                          account_id:
+                            type: integer
+                            example: 1
+                          transfer_id:
+                            type: integer
+                            example: null
+                          transfer_relation:
+                            type: string
+                            example: null
+                          currency_id:
+                            type: integer
+                            example: 2
+                          payment_type:
+                            type: integer
+                            example: 1
+                          payee_id:
+                            type: integer
+                            example: 14
+                          geolocation:
+                            type: object
+                            example: null
+                          workspace_id:
+                            type: integer
+                            example: 1
+                          exclude_from_stats:
+                            type: integer
+                            example: 0
+security:
+  - BearerAuth: []
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
