@@ -4,8 +4,8 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'BudgetControl',
+  tagline: 'official documentation',
   favicon: 'img/favicon.ico',
 
   url: 'https://docs.budgetcontrol.cloud',
@@ -19,7 +19,7 @@ const config: Config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'it', 'es'],
+    locales: ['en'],
   },
 
   presets: [
@@ -35,7 +35,7 @@ const config: Config = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           editUrl:
-            "https://github.com/cloud-annotations/docusaurus-openapi/edit/main/demo/",
+            "https://github.com/BudgetControl/Documentation",
         },
         blog: false,
         theme: {
@@ -62,7 +62,7 @@ const config: Config = {
         },
         {to: '/api', label: 'API', position: 'left'}, // Link alla documentazione API
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/BudgetControl/Documentation',
           label: 'GitHub',
           position: 'right',
         },
@@ -75,8 +75,17 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
+              label: 'Docs',
               to: '/docs/intro',
+            },
+          ],
+        },
+        {
+          title: 'API',
+          items: [
+            {
+              label: 'API',
+              to: '/api',
             },
           ],
         },
@@ -84,32 +93,23 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Facebook',
+              href: 'https://www.facebook.com/profile.php?id=61564453328542',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'Linkedin',
+              href: 'https://www.linkedin.com/company/budgetcontrol/',
             },
             {
               label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
+              href: 'https://x.com/BudgetControl24',
             },
             {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              label: 'Discord',
+              href: 'https://discord.gg/TtMTeUbSpW',
             },
           ],
-        },
+        }
       ],
       copyright: `Copyright © ${new Date().getFullYear()} BudgetControl, Inc. Built with Docusaurus.`,
     },

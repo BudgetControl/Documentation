@@ -1,0 +1,8 @@
+{
+  "label": "Library",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "List of all developed libraries."
+  }
+}

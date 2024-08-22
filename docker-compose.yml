@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+    website:
+      container_name: budgetcontrol-docusaurus
+      image: mlabfactory/php8-apache:v1.2.1
+      volumes:
+        - ./:/var/www/workdir
+        - ./bin/apache/default.conf:/etc/apache2/sites-available/budgetcontrol.cloud.conf
+      networks:
+        - budgetcontrol_network
+      restart: unless-stopped
+
+networks:
+  budgetcontrol_network:
+    external: true
+    name: budgetcontrol_network

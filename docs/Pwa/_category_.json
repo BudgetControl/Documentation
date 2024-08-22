@@ -1,0 +1,8 @@
+{
+  "label": "Pwa",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Front-end application."
+  }
+}
