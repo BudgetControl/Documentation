@@ -4,13 +4,12 @@ sidebar_position: 1
 
 # The basics
 
-![version](https://img.shields.io/badge/version-2.2.2-blue.svg) ![license](https://img.shields.io/badge/license-AGPL-blue.svg) <a 
-href="https://github.com/budgetcontrol/services/issues?q=is%3Aopen+is%3Aissue" target="_blank">![GitHub issues](https://img.shields.io/github/issues/budgetcontrol/Services)
-</a> <a href="https://github.com/budgetcontrol/services/issues?q=is%3Aissue+is%3Aclosed" target="_blank">![GitHub closed issues](https://img.shields.io/github/issues-closed/budgetcontrol/Services?color=green)
-</a> <a href="https://github.com/budgetcontrol/services/issues?q=is%3Aissue+is%3Aopen+label%3Abug" target="_blank">![GitHub issues by-label](https://img.shields.io/github/issues/budgetcontrol/Services/bug?color=red)
+![license](https://img.shields.io/badge/license-AGPL-blue.svg) <a 
+href="https://github.com/budgetcontrol/budgetcontrol/issues?q=is%3Aopen+is%3Aissue" target="_blank">![GitHub issues](https://img.shields.io/github/issues/budgetcontrol/budgetcontrol)
+</a><a href="https://github.com/budgetcontrol/budgetcontrol/issues?q=is%3Aissue+is%3Aopen+label%3Abug" target="_blank">![GitHub issues by-label](https://img.shields.io/github/issues/budgetcontrol/budgetcontrol/bug?color=red)
 </a><a href="https://discord.gg/TtMTeUbSpW" target="_blank">![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)</a>
 
-BudgetControl is an open-source project designed to provide a comprehensive solution for managing personal and organizational finances. The application is built using PHP 8.1^ and Vue.js 3, leveraging modern web technologies to deliver a fast, scalable, and user-friendly experience.
+BudgetControl is an open-source project designed to provide a comprehensive solution for managing personal and organizational finances. The application is built using PHP 8.2^ and Vue.js 3, leveraging modern web technologies to deliver a fast, scalable, and user-friendly experience.
 
 ### Microservice Infrastructure
 BudgetControl is architected using a microservices infrastructure, which ensures that each component of the application is modular, scalable, and can be developed and deployed independently. The core services that make up the BudgetControl application include:
@@ -27,10 +26,11 @@ BudgetControl is architected using a microservices infrastructure, which ensures
 - Labels: Manages labels and tags, allowing users to categorize and organize their financial data more effectively.
 
 ### Developed libraries
-- Libs_BcConnector: Sdk package, Budget Control connector API
-- Schema-Registry-Service: An Schema Registry is a centralized service that manages and distributes database schema definitions
-- SeedsTestLibs: Library with seeds test and migration for unit test
-- Library: This repository contains a collection of common definitions and utilities for all microservices within the Finance Budget Control application. Designed to ensure consistency and code reuse
+- Libs_BcConnector: Budget Control connector API for integrating with external systems.
+- Schema-Registry-Service: Ensures consistency and compatibility between microservices by managing shared schema definitions.
+- SeedsTestLibs: Provides pre-configured data and migration scripts to facilitate unit testing.
+- Library: A foundational component of the Finance Budget Control application, promoting code reusability and maintainability.
+- MailerService: Enables effective communication with users by sending customized email notifications.
 
 ### Gateway
 The application utilizes a PHP Laravel 11 Gateway as the entry point, serving as the central hub that coordinates communication between the various microservices. This gateway ensures secure and efficient routing of requests, as well as providing additional layers of functionality such as API management, authentication, and rate limiting.
@@ -42,36 +42,29 @@ BudgetControl is designed as a Progressive Web Application (PWA), offering a sea
 
 To get started with BudgetControl, follow the steps below to set up your development or production environment.
 
+### Before install
+Before install modify your etc host adding the following domain ( nano /etc/hosts ---> 127.0.0.1 dev.app.budgetcontrol.lan )
+Before run the script, check your environment file is with the right variables
+
 ### Step 1: Clone the Repository
 Begin by cloning the base repository from GitHub. This repository contains the core files and configurations needed to run BudgetControl.
 
 ```
-git clone https://github.com/BudgetControl/Core
+git clone git@github.com:BudgetControl/BudgetControl.git
 ```
 
 ### Step 2: Run the Installation Script
 Once you have cloned the repository, navigate to the project directory and run the install.sh script. This script will automatically set up the necessary dependencies and configure the environment based on your chosen setup.
 
-#### Development Environment Setup
-If you are setting up a development environment, you have two options based on whether you want to run the Progressive Web Application (PWA) using Apache or Node.js.
-
-1 Development Environment with PWA on Apache:
 ```
-./install.sh --end dev --pwa apache
-```
-This command configures the environment for development with the PWA served by Apache.
-
-2 Development Environment with PWA on Node.js:
-```
-./install.sh --end dev --pwa node
-```
-This command sets up the development environment with the PWA served by Node.js.
-
-3. Production Environment Setup
-```
+cd BudgetControl
+chmod 700 install.sh
 ./install.sh
 ```
-For setting up a production environment, simply run the installation script without any additional parameters. This will configure the application with the appropriate production settings.
+
+### Step 3: Run Front End Application
+* clone Front End application ( git clone git@github.com:BudgetControl/Pwa.git )
+* lunch docker compose ( docker-compose up -d )
 
 ### What you'll need
 
@@ -81,4 +74,4 @@ Docker: BudgetControl uses Docker for containerization, ensuring a consistent de
 
 ## Start your site
 
-Enjoy on http://localhost
+Enjoy on https://dev.app.budgetcontrol.lan
