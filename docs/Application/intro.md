@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-## About BudgetControl
+# About BudgetControl
 BudgetControl is a comprehensive financial management application designed to help users track and manage their finances efficiently. Built with a robust microservices architecture, it offers a range of features, including expense tracking, income management, budgeting, and financial reporting. The application supports multiple workspaces, making it easy to manage personal and shared finances separately.
 
 With a progressive web application (PWA) design, BudgetControl is accessible across devices, ensuring a seamless user experience whether you're on a desktop or mobile. The platform is powered by PHP Laravel 11 on the backend and Vue.js 3 on the frontend, providing a modern and responsive interface.
