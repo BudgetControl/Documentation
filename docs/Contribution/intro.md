@@ -4,6 +4,19 @@ sidebar_position: 1
 
 # Contribution guide
 
+## Read with attencion
+This project is a **non-profit initiative**, primarily supported by the community and aimed at providing a valuable service to users without generating profits.
+
+We welcome contributions from developers, but please note the following important points regarding compensation:
+
+* **No guaranteed payment:** Contributions are generally voluntary. While you are welcome to submit an invoice for your work via our [Open Collective (Europe)](https://opencollective.com/budgetcontrol), payment is not guaranteed.
+* **Payment depends on available funds:** Developer compensation will only be considered after all infrastructure and essential operating expenses have been covered. Payments will be made only if sufficient donations are received to support the project beyond its operational costs.
+* **Pre-approval required for costs:** If you would like to contribute and submit an invoice, any costs must be agreed upon in advance before any work begins. This ensures transparency and mutual understanding regarding potential compensation.
+
+We appreciate any contributions made to the project, whether financial or through development, and aim to be transparent in our management of funds.
+
+Thank you for your understanding and support.
+
 ## See our Board
 Before start, see our board on gitHub at following [link](https://github.com/users/BudgetControl/projects/2)
 
