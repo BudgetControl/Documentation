@@ -56,6 +56,8 @@ git clone git@github.com:BudgetControl/BudgetControl.git
 ### Step 2: Run the Installation Script
 Once you have cloned the repository, navigate to the project directory and run the install.sh script. This script will automatically set up the necessary dependencies and configure the environment based on your chosen setup.
 
+**!!First of all, copy and change the .env enviroment file with your settings.**
+
 ```
 cd BudgetControl
 chmod 700 install.sh
