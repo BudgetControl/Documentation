@@ -1,7 +1,9 @@
 openapi: 3.0.0
 info:
-  title: entries
+  title: Entries API
   version: 1.0.0
+servers:
+  - url: https://dev.app.budgetcontrol.cloud
 paths:
   /api/entry:
     get:
@@ -10,7 +12,13 @@ paths:
       parameters:
         - name: X-Bc-Token
           in: header
-          description: JWT token with user acoount
+          description: JWT token with user account
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          description: UUID of the workspace
           required: true
           schema:
             type: string
@@ -22,31 +30,61 @@ paths:
             type: integer
             example: 1
       security:
-        - bearerAuth: []
+        - BearerAuth: []
       responses:
         '200':
           description: Successful response
           content:
             application/json:
               schema:
-                type: array
+                type: object
                 properties:
-                    uuid: 
-                      type: string
-                      description: Universally Unique Identifier
-                      example: 123e4567-e89b-12d3-a456-426614174000
-                    name:
-                      type: string
-                      description: Name of the workspace
-                      example: My Workspace
-                    updated_at:
-                      type: string
-                      format: date-time
-                      description: Date and time the workspace was last updated
-                      example: 2021-07-01T00:00:00Z
-    servers:
-      - url: https://dev.app.budgetcontrol.cloud
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        uuid: 
+                          type: string
+                          description: Universally Unique Identifier
+                          example: "123e4567-e89b-12d3-a456-426614174000"
+                        date_time:
+                          type: string
+                          format: date-time
+                          description: Entry date and time
+                          example: "2024-07-02T11:50:15Z"
+                        amount:
+                          type: number
+                          description: Entry amount
+                          example: -27.97
+                        note:
+                          type: string
+                          description: Entry note
+                          example: "Grocery shopping"
+                        type:
+                          type: string
+                          description: Entry type
+                          example: "expenses"
+                        confirmed:
+                          type: boolean
+                          description: Whether entry is confirmed
+                          example: true
+                        planned:
+                          type: boolean
+                          description: Whether entry is planned
+                          example: false
+                  pagination:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                      total_pages:
+                        type: integer
+                      total_items:
+                        type: integer
 
+security:
+  - BearerAuth: []
 components:
   securitySchemes:
     BearerAuth:

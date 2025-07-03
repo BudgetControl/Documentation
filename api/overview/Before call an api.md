@@ -191,3 +191,46 @@ Replace the placeholders with the following:
 - X-Bc-Token Header: This header should also contain the same token for additional security.
 - X-Bc-Ws Header: This header specifies the workspace ID to ensure that the API request is directed to the correct workspace context.
 - By including these headers in your requests, you ensure secure and authorized access to the BudgetControl API, allowing you to interact with protected endpoints effectively.
+
+### Resources
+
+You can download the Postman collections for all BudgetControl microservices to test the APIs locally:
+
+#### Core Collections
+- [Auth Collection](../../static/postman-collections/Auth.postman_collection.json) - Authentication endpoints
+- [Core Collection](../../static/postman-collections/Core.postman_collection.json) - Core data endpoints (categories, currencies, wallets, etc.)
+- [Workspace Collection](../../static/postman-collections/Workspace.postman_collection.json) - Workspace management
+
+#### Entry Management
+- [Entry Collection](../../static/postman-collections/Entry.postman_collection.json) - Entry CRUD operations
+- [Planned Entry Collection](../../static/postman-collections/Planned%20Entry.postman_collection.json) - Planned entries management
+- [Debits Collection](../../static/postman-collections/Debits.postman_collection.json) - Debit entries
+
+#### Financial Management
+- [Wallet Collection](../../static/postman-collections/Wallet.postman_collection.json) - Wallet operations
+- [Budget Collection](../../static/postman-collections/Budget.postman_collection.json) - Budget management
+- [Goal Collection](../../static/postman-collections/Goal.postman_collection.json) - Savings goals
+- [Savings Collection](../../static/postman-collections/Savings.postman_collection.json) - Savings operations
+
+#### Analytics & Reports
+- [Stats Collection](../../static/postman-collections/Stats.postman_collection.json) - Statistics and analytics
+- [Search Collection](../../static/postman-collections/Search.postman_collection.json) - Search functionality
+
+#### Additional Services
+- [Mailer Collection](../../static/postman-collections/Mailer.postman_collection.json) - Email services
+- [Webhook Collection](../../static/postman-collections/Webhook.postman_collection.json) - Webhook management
+- [Gateway Collection](../../static/postman-collections/Gateway.postman_collection.json) - Gateway services
+- [CMS Collection](../../static/postman-collections/CMS.postman_collection.json) - Content management
+
+#### How to Use Postman Collections
+
+1. Download the collection files you need
+2. Import them into Postman
+3. Set up environment variables:
+   - `APP_DOMAIN`: https://dev.app.budgetcontrol.cloud
+   - `AUTH_MAIL`: Your test account email
+   - `AUTH_PASSWORD`: Your test account password
+4. Run the authentication request first to get your tokens
+5. Use the other endpoints with the authenticated tokens
+
+These collections include all the necessary headers, request bodies, and examples to help you test the BudgetControl APIs effectively.

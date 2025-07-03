@@ -1,0 +1,294 @@
+{
+	"info": {
+		"_postman_id": "028b4062-591f-4bd1-8f2b-140730c1ad8a",
+		"name": "Entry",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34816005",
+		"_collection_link": "https://budget-control-7459.postman.co/workspace/Budgetcontrol~38440e7f-5860-46ac-b759-9f7c9eaef094/collection/34816005-028b4062-591f-4bd1-8f2b-140730c1ad8a?action=share&source=collection_link&creator=34816005"
+	},
+	"item": [
+		{
+			"name": "debits",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/entry/debit",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"entry",
+						"debit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "expense",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/entry/expense",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"entry",
+						"expense"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create expeses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": -100,\r\n    \"note\": null,\r\n    \"labels\": [],\r\n    \"account_id\": 9,\r\n    \"category_id\": 16,\r\n    \"currency_id\": 2,\r\n    \"payment_type\": 1,\r\n    \"uuid\": null,\r\n    \"transfer_id\": false,\r\n    \"date_time\": \"2025-03-18 09:02:09\",\r\n    \"confirmed\": true,\r\n    \"waranty\": false,\r\n    \"geolocalization\": \"\",\r\n    \"planning\": 0,\r\n    \"end_date_time\": null,\r\n    \"exclude_from_stats\": false,\r\n    \"type\": \"expenses\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/entry/expense",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"entry",
+						"expense"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create incoming",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 100,\r\n    \"note\": null,\r\n    \"labels\": [],\r\n    \"account_id\": 9,\r\n    \"category_id\": 16,\r\n    \"currency_id\": 2,\r\n    \"payment_type\": 1,\r\n    \"uuid\": null,\r\n    \"transfer_id\": false,\r\n    \"date_time\": \"2025-03-18 09:02:09\",\r\n    \"confirmed\": true,\r\n    \"waranty\": false,\r\n    \"geolocalization\": \"\",\r\n    \"planning\": 0,\r\n    \"end_date_time\": null,\r\n    \"exclude_from_stats\": false,\r\n    \"type\": \"incoming\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/entry/incoming",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"entry",
+						"incoming"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create saving",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 100,\r\n    \"note\": null,\r\n    \"labels\": [],\r\n    \"account_id\": 9,\r\n    \"category_id\": 16,\r\n    \"currency_id\": 2,\r\n    \"payment_type\": 1,\r\n    \"uuid\": null,\r\n    \"transfer_id\": false,\r\n    \"date_time\": \"2025-03-18 09:02:09\",\r\n    \"confirmed\": true,\r\n    \"waranty\": false,\r\n    \"geolocalization\": \"\",\r\n    \"planning\": 0,\r\n    \"end_date_time\": null,\r\n    \"exclude_from_stats\": false,\r\n    \"type\": \"saving\",\r\n    \"goal_id\": \"da66739d-4d21-4ef3-aef0-08cd1cde11a9\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/entry/saving",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"entry",
+						"saving"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Entries list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/entry?per_page=30&page=1&filters[account_id]=31",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"entry"
+					],
+					"query": [
+						{
+							"key": "filters[category_id]",
+							"value": "17",
+							"disabled": true
+						},
+						{
+							"key": "filters[payee_id]",
+							"value": "38",
+							"disabled": true
+						},
+						{
+							"key": "per_page",
+							"value": "30"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "filters[planned]",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "filters[account_id]",
+							"value": "31"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

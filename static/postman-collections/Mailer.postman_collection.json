@@ -1,0 +1,64 @@
+{
+	"info": {
+		"_postman_id": "74f1fd46-4088-46bc-b285-05bccfa5912a",
+		"name": "Mailer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34816005",
+		"_collection_link": "https://budget-control-7459.postman.co/workspace/Budgetcontrol~38440e7f-5860-46ac-b759-9f7c9eaef094/collection/34816005-74f1fd46-4088-46bc-b285-05bccfa5912a?action=share&source=collection_link&creator=34816005"
+	},
+	"item": [
+		{
+			"name": "send assistance mail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_mail",
+							"value": "{{AUTH_MAIL}}",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "text message",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/mailer/assistance",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"mailer",
+						"assistance"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

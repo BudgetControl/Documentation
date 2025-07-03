@@ -1,0 +1,274 @@
+{
+	"info": {
+		"_postman_id": "42551540-20f1-413f-b3a5-456177362871",
+		"name": "Goal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34816005",
+		"_collection_link": "https://budget-control-7459.postman.co/workspace/Budgetcontrol~38440e7f-5860-46ac-b759-9f7c9eaef094/collection/34816005-42551540-20f1-413f-b3a5-456177362871?action=share&source=collection_link&creator=34816005"
+	},
+	"item": [
+		{
+			"name": "goals",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/goals",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"goals"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"category_icon\": \"fa-solid fa-graduation-cap\",\n    \"name\": \"istruzione\",\n    \"amount\": \"1000\",\n    \"due_date\": \"2028-06-30T14:41:00.000Z\",\n    \"description\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/goals",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"goals"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update status",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"complete\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/goals/b1402052-3c19-4990-94d8-9fca63935270/status",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"goals",
+						"b1402052-3c19-4990-94d8-9fca63935270",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"category_icon\": \"fa-solid fa-graduation-cap\",\n    \"name\": \"istruzione\",\n    \"amount\": \"1000\",\n    \"due_date\": \"2028-06-30T14:41:00.000Z\",\n    \"description\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/goals/b1402052-3c19-4990-94d8-9fca63935270",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"goals",
+						"b1402052-3c19-4990-94d8-9fca63935270"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/goals/b1402052-3c19-4990-94d8-9fca63935270",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"goals",
+						"b1402052-3c19-4990-94d8-9fca63935270"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "goal",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/goals/b1402052-3c19-4990-94d8-9fca63935270",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"goals",
+						"b1402052-3c19-4990-94d8-9fca63935270"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

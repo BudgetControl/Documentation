@@ -1,17 +1,18 @@
 openapi: 3.0.0
 info:
-  title: chart
+  title: Chart API
   version: 1.0.0
+servers:
+  - url: https://dev.app.budgetcontrol.cloud
 paths:
-
-  /stats/chart/table/expenses/category:
+  /api/stats/chart/table/expenses/category:
     get:
       summary: Get expenses stats by category
       description: Retrieve expenses statistics by category
       parameters:
         - name: X-Bc-Token
           in: header
-          description: JWT token with user acoount
+          description: JWT token with user account
           required: true
           schema:
             type: string
@@ -38,7 +39,7 @@ paths:
             format: date
             example: 2024-06-30
       security:
-        - bearerAuth: []
+        - BearerAuth: []
       responses:
         '200':
           description: Successful response
@@ -70,11 +71,8 @@ paths:
                         type:
                           type: string
                           description: Type of the entry
-              
-    servers:
-      - url: https://dev.app.budgetcontrol.cloud
 
-  /stats/chart/line/incoming-expenses:
+  /api/stats/chart/line/incoming-expenses:
     get:
       summary: Get incoming expenses stats by month
       description: Retrieve incoming expenses statistics by month
@@ -133,7 +131,7 @@ paths:
               - start: 2024-12-01
                 end: 2024-12-31
       security:
-        - bearerAuth: []
+        - BearerAuth: []
       responses:
         '200':
           description: Successful response
@@ -234,8 +232,6 @@ paths:
         '500':
           description: Internal Server Error
                   
-security:
-  - BearerAuth: []
 components:
   securitySchemes:
     BearerAuth:

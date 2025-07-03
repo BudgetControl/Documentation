@@ -1,0 +1,66 @@
+openapi: 3.0.0
+info:
+  title: Debits API
+  version: 1.0.0
+servers:
+  - url: https://dev.app.budgetcontrol.cloud
+paths:
+  /api/debits:
+    get:
+      summary: Get debits list
+      description: Retrieve list of debit entries
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          description: JWT token with user account
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          description: UUID of the workspace
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    uuid:
+                      type: string
+                    date_time:
+                      type: string
+                      format: date-time
+                    amount:
+                      type: number
+                    note:
+                      type: string
+                    type:
+                      type: string
+                      enum: [debit]
+                    confirmed:
+                      type: boolean
+                    planned:
+                      type: boolean
+                    account:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+
+security:
+  - BearerAuth: []
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

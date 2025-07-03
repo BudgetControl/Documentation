@@ -1,7 +1,9 @@
 openapi: 3.0.0
 info:
-  title: Stats
+  title: Stats API
   version: 1.0.0
+servers:
+  - url: https://dev.app.budgetcontrol.cloud
 paths:
   /api/stats/total:
     get:
@@ -10,7 +12,7 @@ paths:
       parameters:
         - name: X-Bc-Token
           in: header
-          description: JWT token with user acoount
+          description: JWT token with user account
           required: true
           schema:
             type: string
@@ -21,7 +23,7 @@ paths:
           schema:
             type: string
       security:
-        - bearerAuth: []
+        - BearerAuth: []
       responses:
         '200':
           description: Successful response
@@ -33,8 +35,6 @@ paths:
                   total:
                     type: number
                     example: 4158.24
-    servers:
-      - url: https://dev.app.budgetcontrol.cloud
 
   /api/stats/expenses:
     get:
@@ -43,7 +43,7 @@ paths:
       parameters:
         - name: X-Bc-Token
           in: header
-          description: JWT token with user acoount
+          description: JWT token with user account
           required: true
           schema:
             type: string
@@ -54,7 +54,7 @@ paths:
           schema:
             type: string
       security:
-        - bearerAuth: []
+        - BearerAuth: []
       responses:
         '200':
           description: Successful response
@@ -72,8 +72,6 @@ paths:
                   total_passed:
                     type: number
                     example: -3493.11
-    servers:
-      - url: https://dev.app.budgetcontrol.cloud
 
   /api/stats/wallets:
     get:
@@ -82,7 +80,7 @@ paths:
       parameters:
         - name: X-Bc-Token
           in: header
-          description: JWT token with user acoount
+          description: JWT token with user account
           required: true
           schema:
             type: string
@@ -93,7 +91,7 @@ paths:
           schema:
             type: string
       security:
-        - bearerAuth: []
+        - BearerAuth: []
       responses:
         '200':
           description: Successful response
@@ -158,7 +156,7 @@ paths:
                   workspace_id:
                     type: integer
                     description: ID of the workspace the account belongs to
-    
+
   /api/stats/planned:
     get:
       summary: Get wallets stats
@@ -166,7 +164,7 @@ paths:
       parameters:
         - name: X-Bc-Token
           in: header
-          description: JWT token with user acoount
+          description: JWT token with user account
           required: true
           schema:
             type: string
@@ -177,7 +175,7 @@ paths:
           schema:
             type: string
       security:
-        - bearerAuth: []
+        - BearerAuth: []
       responses:
         '200':
           description: Successful response
@@ -189,7 +187,7 @@ paths:
                   total:
                     type: integer
                     description: Total planned entries
-    
+
   /api/stats/health:
     get:
         summary: Get wallets health
@@ -197,7 +195,7 @@ paths:
         parameters:
           - name: X-Bc-Token
             in: header
-            description: JWT token with user acoount
+            description: JWT token with user account
             required: true
             schema:
               type: string
@@ -208,7 +206,7 @@ paths:
             schema:
               type: string
         security:
-          - bearerAuth: []
+          - BearerAuth: []
         responses:
           '200':
             description: Successful response
@@ -228,7 +226,7 @@ paths:
         parameters:
           - name: X-Bc-Token
             in: header
-            description: JWT token with user acoount
+            description: JWT token with user account
             required: true
             schema:
               type: string
@@ -255,7 +253,7 @@ paths:
               format: date-time
               example: 2021-07-31T23:59:59Z
         security:
-          - bearerAuth: []
+          - BearerAuth: []
         responses:
           '200':
             description: Successful response
@@ -273,11 +271,8 @@ paths:
                     total_passed:
                       type: integer
                       description: Total passed incoming entries
-    servers:
-      - url: https://dev.app.budgetcontrol.cloud
 
 security:
-  - BearerAuth: []
 components:
   securitySchemes:
     BearerAuth:

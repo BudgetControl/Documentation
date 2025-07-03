@@ -1,0 +1,988 @@
+{
+	"info": {
+		"_postman_id": "d43e168b-896b-4899-bdc1-b37201946cf2",
+		"name": "Stats",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34816005",
+		"_collection_link": "https://budget-control-7459.postman.co/workspace/Budgetcontrol~38440e7f-5860-46ac-b759-9f7c9eaef094/collection/34816005-d43e168b-896b-4899-bdc1-b37201946cf2?action=share&source=collection_link&creator=34816005"
+	},
+	"item": [
+		{
+			"name": "average",
+			"item": [
+				{
+					"name": "incoming average",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-bc-token",
+								"value": "{{BC-TOKEN}}"
+							},
+							{
+								"key": "x-bc-ws",
+								"value": "{{BC-WS}}"
+							}
+						],
+						"url": {
+							"raw": "{{APP_DOMAIN}}/api/stats/average-incoming",
+							"host": [
+								"{{APP_DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"stats",
+								"average-incoming"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "average savings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-bc-token",
+								"value": "{{BC-TOKEN}}"
+							},
+							{
+								"key": "x-bc-ws",
+								"value": "{{BC-WS}}"
+							}
+						],
+						"url": {
+							"raw": "{{APP_DOMAIN}}/api/stats/average-incoming",
+							"host": [
+								"{{APP_DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"stats",
+								"average-incoming"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "expenses average",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-bc-token",
+								"value": "{{BC-TOKEN}}"
+							},
+							{
+								"key": "x-bc-ws",
+								"value": "{{BC-WS}}"
+							}
+						],
+						"url": {
+							"raw": "{{APP_DOMAIN}}/api/stats/average-expenses",
+							"host": [
+								"{{APP_DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"stats",
+								"average-expenses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "expenses savings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-bc-token",
+								"value": "{{BC-TOKEN}}"
+							},
+							{
+								"key": "x-bc-ws",
+								"value": "{{BC-WS}}"
+							}
+						],
+						"url": {
+							"raw": "{{APP_DOMAIN}}/api/stats/average-savings",
+							"host": [
+								"{{APP_DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"stats",
+								"average-savings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "chart",
+			"item": [
+				{
+					"name": "table expenses by category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"AUTH_TOKEN\", jsonData.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-bc-token",
+								"value": "{{BC-TOKEN}}"
+							},
+							{
+								"key": "x-bc-ws",
+								"value": "{{BC-WS}}"
+							}
+						],
+						"url": {
+							"raw": "{{APP_DOMAIN}}/api/stats/chart/table/expenses/category?date_time[0][start]=2024%2F06%2F01&date_time[0][end]=2024%2F06%2F31",
+							"host": [
+								"{{APP_DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"stats",
+								"chart",
+								"table",
+								"expenses",
+								"category"
+							],
+							"query": [
+								{
+									"key": "date_time[0][start]",
+									"value": "2024%2F06%2F01"
+								},
+								{
+									"key": "date_time[0][end]",
+									"value": "2024%2F06%2F31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "table expenses by label",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"AUTH_TOKEN\", jsonData.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-bc-token",
+								"value": "{{BC-TOKEN}}"
+							},
+							{
+								"key": "x-bc-ws",
+								"value": "{{BC-WS}}"
+							}
+						],
+						"url": {
+							"raw": "{{APP_DOMAIN}}/api/stats/chart/bar/expenses/label?date_time[0][start]=2024%2F06%2F01&date_time[0][end]=2024%2F06%2F31",
+							"host": [
+								"{{APP_DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"stats",
+								"chart",
+								"bar",
+								"expenses",
+								"label"
+							],
+							"query": [
+								{
+									"key": "date_time[0][start]",
+									"value": "2024%2F06%2F01"
+								},
+								{
+									"key": "date_time[0][end]",
+									"value": "2024%2F06%2F31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bar expenses by category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-bc-token",
+								"value": "{{BC-TOKEN}}"
+							},
+							{
+								"key": "x-bc-ws",
+								"value": "{{BC-WS}}"
+							}
+						],
+						"url": {
+							"raw": "{{APP_DOMAIN}}/api/stats/chart/bar/expenses/category?date_time[0][start]=2024%2F06%2F01&date_time[0][end]=2024%2F06%2F31",
+							"host": [
+								"{{APP_DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"stats",
+								"chart",
+								"bar",
+								"expenses",
+								"category"
+							],
+							"query": [
+								{
+									"key": "date_time[0][start]",
+									"value": "2024%2F06%2F01"
+								},
+								{
+									"key": "date_time[0][end]",
+									"value": "2024%2F06%2F31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "line incoming & expenses",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-bc-token",
+								"value": "{{BC-TOKEN}}"
+							},
+							{
+								"key": "x-bc-ws",
+								"value": "{{BC-WS}}"
+							}
+						],
+						"url": {
+							"raw": "{{APP_DOMAIN}}/api/stats/chart/line/incoming-expenses?date_time[0][start]=2024%2F01%2F01&date_time[0][end]=2024%2F01%2F31&date_time[1][start]=2024%2F02%2F01&date_time[1][end]=2024%2F02%2F29&date_time[2][start]=2024%2F03%2F01&date_time[2][end]=2024%2F03%2F31&date_time[3][start]=2024%2F04%2F01&date_time[3][end]=2024%2F04%2F30&date_time[4][start]=2024%2F05%2F01&date_time[4][end]=2024%2F05%2F31&date_time[5][start]=2024%2F06%2F01&date_time[5][end]=2024%2F06%2F30&date_time[6][start]=2024%2F07%2F01&date_time[6][end]=2024%2F07%2F31&date_time[7][start]=2024%2F08%2F01&date_time[7][end]=2024%2F08%2F31&date_time[8][start]=2024%2F09%2F01&date_time[8][end]=2024%2F09%2F30&date_time[9][start]=2024%2F10%2F01&date_time[9][end]=2024%2F10%2F31&date_time[10][start]=2024%2F11%2F01&date_time[10][end]=2024%2F11%2F30&date_time[11][start]=2024%2F12%2F01&date_time[11][end]=2024%2F12%2F31",
+							"host": [
+								"{{APP_DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"stats",
+								"chart",
+								"line",
+								"incoming-expenses"
+							],
+							"query": [
+								{
+									"key": "date_time[0][start]",
+									"value": "2024%2F01%2F01"
+								},
+								{
+									"key": "date_time[0][end]",
+									"value": "2024%2F01%2F31"
+								},
+								{
+									"key": "date_time[1][start]",
+									"value": "2024%2F02%2F01"
+								},
+								{
+									"key": "date_time[1][end]",
+									"value": "2024%2F02%2F29"
+								},
+								{
+									"key": "date_time[2][start]",
+									"value": "2024%2F03%2F01"
+								},
+								{
+									"key": "date_time[2][end]",
+									"value": "2024%2F03%2F31"
+								},
+								{
+									"key": "date_time[3][start]",
+									"value": "2024%2F04%2F01"
+								},
+								{
+									"key": "date_time[3][end]",
+									"value": "2024%2F04%2F30"
+								},
+								{
+									"key": "date_time[4][start]",
+									"value": "2024%2F05%2F01"
+								},
+								{
+									"key": "date_time[4][end]",
+									"value": "2024%2F05%2F31"
+								},
+								{
+									"key": "date_time[5][start]",
+									"value": "2024%2F06%2F01"
+								},
+								{
+									"key": "date_time[5][end]",
+									"value": "2024%2F06%2F30"
+								},
+								{
+									"key": "date_time[6][start]",
+									"value": "2024%2F07%2F01"
+								},
+								{
+									"key": "date_time[6][end]",
+									"value": "2024%2F07%2F31"
+								},
+								{
+									"key": "date_time[7][start]",
+									"value": "2024%2F08%2F01"
+								},
+								{
+									"key": "date_time[7][end]",
+									"value": "2024%2F08%2F31"
+								},
+								{
+									"key": "date_time[8][start]",
+									"value": "2024%2F09%2F01"
+								},
+								{
+									"key": "date_time[8][end]",
+									"value": "2024%2F09%2F30"
+								},
+								{
+									"key": "date_time[9][start]",
+									"value": "2024%2F10%2F01"
+								},
+								{
+									"key": "date_time[9][end]",
+									"value": "2024%2F10%2F31"
+								},
+								{
+									"key": "date_time[10][start]",
+									"value": "2024%2F11%2F01"
+								},
+								{
+									"key": "date_time[10][end]",
+									"value": "2024%2F11%2F30"
+								},
+								{
+									"key": "date_time[11][start]",
+									"value": "2024%2F12%2F01"
+								},
+								{
+									"key": "date_time[11][end]",
+									"value": "2024%2F12%2F31"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "total-loan-installments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/stats/total/planned/remaining",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"stats",
+						"total",
+						"planned",
+						"remaining"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "total-loan-installments",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-bc-token",
+								"value": "{{BC-TOKEN}}"
+							},
+							{
+								"key": "x-bc-ws",
+								"value": "{{BC-WS}}"
+							}
+						],
+						"url": {
+							"raw": "{{APP_DOMAIN}}/api/stats/total/planned/remaining",
+							"host": [
+								"{{APP_DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"stats",
+								"total",
+								"planned",
+								"remaining"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.26.2"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 15 Nov 2024 13:05:01 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Authorization"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.4"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private, must-revalidate"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "expires",
+							"value": "-1"
+						},
+						{
+							"key": "Authorization",
+							"value": "Bearer eyJraWQiOiJKNkVyRmJcL3liMGhHeU5IZ3o2aXhaYWU2QXI3VDlhWExqZXNpWjB4RWlKMD0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmYTg0ZWQ5Ny1mODQxLTQyYjgtYTNjMi0zYTBjYjBhMDdlYjYiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuZXUtd2VzdC0xLmFtYXpvbmF3cy5jb21cL2V1LXdlc3QtMV9nUXBkM0FobWEiLCJjbGllbnRfaWQiOiJhdGp0ZDd1NWRiN3RwNW85aWUwcXJiM2MxIiwib3JpZ2luX2p0aSI6ImYwOGYwZTlkLTM5NTMtNDdjMi05YTRmLWQ0MTBlMDM0MDUxZCIsImV2ZW50X2lkIjoiZjg1NDRjOTMtZDQwMS00ZGMyLWFiYTctZGY1YzJmOTgxYjA5IiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJhd3MuY29nbml0by5zaWduaW4udXNlci5hZG1pbiIsImF1dGhfdGltZSI6MTczMTY3MzE3NSwiZXhwIjoxNzMxNjczNDc1LCJpYXQiOjE3MzE2NzMxNzUsImp0aSI6ImIxNTU3ZGY4LThmODctNGQ1OS04MGE3LThlYTlkNzU2ZDdjNyIsInVzZXJuYW1lIjoiZmE4NGVkOTctZjg0MS00MmI4LWEzYzItM2EwY2IwYTA3ZWI2In0.G3LONEr2ez8kMJbVVLHZ0Bk73G9nwDRt-uOJwZzKYqLX19AWI2ie0jO5sg8V73WcIzFUXZrBb8iPBbhAD8xqJ8PE-pOqfX0l7hM4QfkntF7qxuZsKJ-jB1Pmz09z48suHYWwqzxEPQyi2rzayPMthaF3T1C7vVEoHh_N2Fb9qOc91RdL5y6PtVGfDJvC10mF2tMNqor3qwfDKN3kiiMC3Weqb0HQmOQNxL-0oVNx0Mfe2yIZf9MJck-0ZrTAm8schTcc4tlvRnVMubvUCssQFo_pK_9lWjxLxviAPnhVHRk0ACJdlTGjOSn4_fPlLCP5umvJL3TtS0i6cZuyGghxFw"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"total\": \"-22.00\"\n}"
+				}
+			]
+		},
+		{
+			"name": "total planned monthly",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/stats/total/planned/monthly",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"stats",
+						"total",
+						"planned",
+						"monthly"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "incoming by date",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/stats/incoming?start_date=2024-9-01&end_date=2024-9-30",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"stats",
+						"incoming"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2024-9-01"
+						},
+						{
+							"key": "end_date",
+							"value": "2024-9-30"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "expenses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/stats/expenses",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"stats",
+						"expenses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "wallets",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/stats/wallets",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"stats",
+						"wallets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "total",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/stats/total",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"stats",
+						"total"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stats of entries",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": {\r\n        \"start\": \"2024-10-01T11:39:00.000Z\",\r\n        \"end\": \"2024-10-31T12:39:00.000Z\"\r\n    },\r\n    \"categories\": [\r\n        19\r\n    ],\r\n    \"wallets\": [],\r\n    \"types\": [],\r\n    \"currencies\": [],\r\n    \"payment_methods\": [],\r\n    \"tags\": [],\r\n    \"accounts\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/stats/entries",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"stats",
+						"entries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "total with planned",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/stats/total/planned",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"stats",
+						"total",
+						"planned"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "health",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/stats/health",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"stats",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stats entry",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date\": {\n        \"start\": \"2024-10-01T20:53:00.000Z\",\n        \"end\": \"2024-10-31T21:53:00.000Z\"\n    },\n    \"categories\": [],\n    \"wallets\": [],\n    \"types\": [],\n    \"currencies\": null,\n    \"payment_methods\": [],\n    \"tags\": [],\n    \"accounts\": []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/stats/entries",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"stats",
+						"entries"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

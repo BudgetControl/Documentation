@@ -1,0 +1,363 @@
+openapi: 3.0.0
+info:
+  title: Entry API
+  version: 1.0.0
+servers:
+  - url: https://dev.app.budgetcontrol.cloud
+paths:
+  /api/entry:
+    get:
+      summary: Get entries list
+      description: Retrieve paginated list of entries with filters
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          description: JWT token with user account
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          description: UUID of the workspace
+          required: true
+          schema:
+            type: string
+        - name: per_page
+          in: query
+          description: Number of items per page
+          schema:
+            type: integer
+            default: 30
+        - name: page
+          in: query
+          description: Page number
+          schema:
+            type: integer
+            default: 1
+        - name: filters[account_id]
+          in: query
+          description: Filter by account ID
+          schema:
+            type: integer
+        - name: filters[category_id]
+          in: query
+          description: Filter by category ID
+          schema:
+            type: integer
+        - name: filters[payee_id]
+          in: query
+          description: Filter by payee ID
+          schema:
+            type: integer
+        - name: filters[planned]
+          in: query
+          description: Filter by planned entries
+          schema:
+            type: integer
+            enum: [0, 1]
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Entry'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+
+  /api/entry/expense:
+    get:
+      summary: Get expenses
+      description: Retrieve list of expense entries
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+
+    post:
+      summary: Create expense
+      description: Create a new expense entry
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntryCreate'
+      responses:
+        '201':
+          description: Expense created successfully
+
+  /api/entry/incoming:
+    post:
+      summary: Create incoming entry
+      description: Create a new incoming entry
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/EntryCreate'
+                - type: object
+                  properties:
+                    type:
+                      type: string
+                      enum: [incoming]
+      responses:
+        '201':
+          description: Incoming entry created successfully
+
+  /api/entry/saving:
+    post:
+      summary: Create saving entry
+      description: Create a new saving entry
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/EntryCreate'
+                - type: object
+                  properties:
+                    type:
+                      type: string
+                      enum: [saving]
+                    goal_id:
+                      type: string
+                      format: uuid
+      responses:
+        '201':
+          description: Saving entry created successfully
+
+  /api/entry/debit:
+    get:
+      summary: Get debit entries
+      description: Retrieve list of debit entries
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+
+  /api/entry/planned/{id}:
+    put:
+      summary: Update planned entry
+      description: Update a planned entry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/EntryCreate'
+                - type: object
+                  properties:
+                    planning:
+                      type: string
+                      enum: [yearly, monthly, weekly, daily]
+                    end_date_time:
+                      type: string
+                      format: date-time
+                      nullable: true
+      responses:
+        '200':
+          description: Planned entry updated successfully
+
+components:
+  schemas:
+    Entry:
+      type: object
+      properties:
+        uuid:
+          type: string
+        date_time:
+          type: string
+          format: date-time
+        amount:
+          type: number
+        note:
+          type: string
+        type:
+          type: string
+          enum: [expenses, incoming, saving, debit]
+        confirmed:
+          type: boolean
+        planned:
+          type: boolean
+        waranty:
+          type: boolean
+        transfer:
+          type: boolean
+        installment:
+          type: integer
+        account_id:
+          type: integer
+        category_id:
+          type: integer
+        currency_id:
+          type: integer
+        payment_type:
+          type: integer
+
+    EntryCreate:
+      type: object
+      required:
+        - amount
+        - account_id
+        - category_id
+        - currency_id
+        - payment_type
+        - date_time
+        - type
+      properties:
+        amount:
+          type: number
+        note:
+          type: string
+          nullable: true
+        labels:
+          type: array
+          items:
+            type: integer
+        account_id:
+          type: integer
+        category_id:
+          type: integer
+        currency_id:
+          type: integer
+        payment_type:
+          type: integer
+        uuid:
+          type: string
+          nullable: true
+        transfer_id:
+          type: boolean
+        date_time:
+          type: string
+          format: date-time
+        confirmed:
+          type: boolean
+        waranty:
+          type: boolean
+        geolocalization:
+          type: string
+        planning:
+          type: integer
+        end_date_time:
+          type: string
+          format: date-time
+          nullable: true
+        exclude_from_stats:
+          type: boolean
+        type:
+          type: string
+          enum: [expenses, incoming, saving, debit]
+        payee_id:
+          type: integer
+          default: 0
+
+    Pagination:
+      type: object
+      properties:
+        current_page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        last_page:
+          type: integer
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,57 @@
+openapi: 3.0.0
+info:
+  title: Mailer API
+  version: 1.0.0
+servers:
+  - url: https://dev.app.budgetcontrol.cloud
+paths:
+  /api/mailer/assistance:
+    post:
+      summary: Send assistance email
+      description: Send an assistance email to support
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          description: JWT token with user account
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          description: UUID of the workspace
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                user_mail:
+                  type: string
+                  format: email
+                  description: User email address
+                text:
+                  type: string
+                  description: Message text
+              required:
+                - user_mail
+                - text
+      responses:
+        '200':
+          description: Email sent successfully
+        '400':
+          description: Bad request
+
+security:
+  - BearerAuth: []
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

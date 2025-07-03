@@ -1,0 +1,49 @@
+{
+	"info": {
+		"_postman_id": "586b9d22-c2dd-4a4f-89b7-0b785e93c47d",
+		"name": "Gateway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34816005",
+		"_collection_link": "https://budget-control-7459.postman.co/workspace/Budgetcontrol~38440e7f-5860-46ac-b759-9f7c9eaef094/collection/34816005-586b9d22-c2dd-4a4f-89b7-0b785e93c47d?action=share&source=collection_link&creator=34816005"
+	},
+	"item": [
+		{
+			"name": "Finalize sign-up",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"workspace\": {\r\n        \"name\": \"The Workspace\",\r\n        \"currency\": 2,\r\n        \"payment_type\": 2\r\n    },\r\n    \"wallet\": {\r\n        \"name\": \"New wallet\",\r\n        \"balance\": 0.0,\r\n        \"type\": \"bank\",\r\n        \"color\": \"#000000\",\r\n        \"currency\": 2,\r\n        \"exclude_from_stats\": 0\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APP_DOMAIN}}/auth/{userUuid}finalize/sign-up",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"auth",
+						"{userUuid}finalize",
+						"sign-up"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

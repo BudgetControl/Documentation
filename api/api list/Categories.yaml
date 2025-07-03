@@ -1,12 +1,29 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: categories
+  title: Categories API
+servers:
+  - url: https://dev.app.budgetcontrol.cloud
 paths:
   /api/categories:
     get:
       summary: Get categories
       description: Retrieve a list of categories
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          description: JWT token with user account
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          description: UUID of the workspace
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
       responses:
         '200':
           description: Successful response

@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "be06cb45-d38b-4cbb-bc4b-6d1ec9aa3de1",
+		"name": "Webhook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34816005",
+		"_collection_link": "https://budget-control-7459.postman.co/workspace/Budgetcontrol~38440e7f-5860-46ac-b759-9f7c9eaef094/collection/34816005-be06cb45-d38b-4cbb-bc4b-6d1ec9aa3de1?action=share&source=collection_link&creator=34816005"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "p1iSAdwqx5FsuNhiRnscAsT3I4UA3cjyVi5qDNqaYiskE0qhWR",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"domain\":\"https:77dev.budgetcontrol.cloud\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APP_WEBHOOK_DOMAIN}}/create",
+					"host": [
+						"{{APP_WEBHOOK_DOMAIN}}"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invoke webhook",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-HASH",
+						"value": "879837afad41ce14aa78b2f9306eb466fd82297fef5044527939685f52a8422d",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{APP_WEBHOOK_DOMAIN}}/http/833ab403-b358-47e3-86dd-5ad171570fcc/test",
+					"host": [
+						"{{APP_WEBHOOK_DOMAIN}}"
+					],
+					"path": [
+						"http",
+						"833ab403-b358-47e3-86dd-5ad171570fcc",
+						"test"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

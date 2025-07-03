@@ -1,8 +1,8 @@
 {
-  "label": "Documentation",
-  "position": 2,
+  "label": "Overview",
+  "position": 1,
   "link": {
     "type": "generated-index",
-    "description": "Some basic information about APIs"
+    "description": "API overview and authentication guide"
   }
 }

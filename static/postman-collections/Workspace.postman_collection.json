@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "58dbb1cd-90a5-4e45-9116-91f596ce51ac",
+		"name": "Workspace",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34816005",
+		"_collection_link": "https://budget-control-7459.postman.co/workspace/Budgetcontrol~38440e7f-5860-46ac-b759-9f7c9eaef094/collection/34816005-58dbb1cd-90a5-4e45-9116-91f596ce51ac?action=share&source=collection_link&creator=34816005"
+	},
+	"item": [
+		{
+			"name": "list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/workspace/list",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"workspace",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/workspace/list",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"workspace",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/workspace/2c403243-4a94-43b8-99ee-72fa99f1ef43",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"workspace",
+						"2c403243-4a94-43b8-99ee-72fa99f1ef43"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTH_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-bc-token",
+						"value": "{{BC-TOKEN}}"
+					},
+					{
+						"key": "x-bc-ws",
+						"value": "{{BC-WS}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"wallet\",\r\n    \"color\": \"#e6e632ff\",\r\n    \"invoice_date\": null,\r\n    \"closing_date\": null,\r\n    \"payment_account\": null,\r\n    \"type\": \"bank\",\r\n    \"installementValue\": null,\r\n    \"currency\": \"2\",\r\n    \"balance\": \"3000.00\",\r\n    \"exclude_from_stats\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APP_DOMAIN}}/api/workspace/create",
+					"host": [
+						"{{APP_DOMAIN}}"
+					],
+					"path": [
+						"api",
+						"workspace",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

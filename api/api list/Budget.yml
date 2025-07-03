@@ -1,15 +1,29 @@
 openapi: 3.0.0
 info:
-  title: budget
+  title: Budget API
   version: 1.0.0
 servers:
-  - url: https://dev.app.budgetcontrol.cloud/api
+  - url: https://dev.app.budgetcontrol.cloud
 paths:
-  /budgets/stats:
+  /api/budgets/stats:
     get:
       summary: Get budget statistics
       description: Retrieve statistics for budgets
-      operationId: getBudgetStats
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          description: JWT token with user account
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          description: UUID of the workspace
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
       responses:
         '200':
           description: Successful response
@@ -18,77 +32,214 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
-                  properties:
-                    total:
-                      type: number
-                    totalSpent:
-                      type: number
-                    totalRemaining:
-                      type: number
-                    totalSpentPercentage:
-                      type: string
-                    totalRemainingPercentage:
-                      type: string
-                    budget:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        uuid:
-                          type: string
-                        name:
-                          type: string
-                        description:
-                          type: string
-                        amount:
-                          type: number
-                        configuration:
-                          type: object
-                          properties:
-                            tags:
-                              type: array
-                              items:
-                                type: string
-                            types:
-                              type: array
-                              items:
-                                type: string
-                            period:
-                              type: string
-                            accounts:
-                              type: array
-                              items:
-                                type: integer
-                            categories:
-                              type: array
-                              items:
-                                type: integer
-                            period_end:
-                              type: string
-                              format: date-time
-                            period_start:
-                              type: string
-                              format: date-time
-                        deleted_at:
-                          type: string
-                          format: date-time
-                        notification:
-                          type: integer
-                        workspace_id:
-                          type: integer
-                        emails:
-                          type: array
-                          items:
-                            type: string
-        '401':
-          description: Unauthorized
-        '500':
-          description: Internal Server Error
-                  
-security:
-  - BearerAuth: []
+                  $ref: '#/components/schemas/BudgetStats'
+
+  /api/budget/{uuid}/stats:
+    get:
+      summary: Get budget stats by UUID
+      description: Retrieve statistics for a specific budget
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+
+  /api/budget/{uuid}:
+    get:
+      summary: Get budget details
+      description: Retrieve detailed information about a specific budget
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+
+  /api/budget/create:
+    post:
+      summary: Create budget
+      description: Create a new budget
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BudgetCreate'
+      responses:
+        '201':
+          description: Budget created successfully
+
 components:
+  schemas:
+    BudgetStats:
+      type: object
+      properties:
+        total:
+          type: number
+        totalSpent:
+          type: number
+        totalRemaining:
+          type: number
+        totalSpentPercentage:
+          type: string
+        totalRemainingPercentage:
+          type: string
+        budget:
+          $ref: '#/components/schemas/Budget'
+
+    Budget:
+      type: object
+      properties:
+        id:
+          type: integer
+        uuid:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        amount:
+          type: number
+        configuration:
+          type: object
+          properties:
+            tags:
+              type: array
+              items:
+                type: string
+            types:
+              type: array
+              items:
+                type: string
+            period:
+              type: string
+            accounts:
+              type: array
+              items:
+                type: integer
+            categories:
+              type: array
+              items:
+                type: integer
+            period_end:
+              type: string
+              format: date-time
+            period_start:
+              type: string
+              format: date-time
+        deleted_at:
+          type: string
+          format: date-time
+        notification:
+          type: integer
+        workspace_id:
+          type: integer
+        emails:
+          type: array
+          items:
+            type: string
+
+    BudgetCreate:
+      type: object
+      required:
+        - name
+        - amount
+        - configuration
+      properties:
+        name:
+          type: string
+          example: "Affitto"
+        amount:
+          type: string
+          example: "500"
+        description:
+          type: string
+          nullable: true
+        configuration:
+          type: object
+          properties:
+            period:
+              type: string
+              enum: [monthly, yearly, weekly, daily]
+              example: "monthly"
+            categories:
+              type: array
+              items:
+                type: integer
+            tags:
+              type: array
+              items:
+                type: string
+            types:
+              type: array
+              items:
+                type: string
+                enum: [expenses, incoming, saving]
+            accounts:
+              type: array
+              items:
+                type: integer
+            period_start:
+              type: string
+              format: date-time
+              nullable: true
+            period_end:
+              type: string
+              format: date-time
+              nullable: true
+        notification:
+          type: boolean
+        emails:
+          type: array
+          items:
+            type: string
+
   securitySchemes:
     BearerAuth:
       type: http

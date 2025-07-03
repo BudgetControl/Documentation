@@ -1,0 +1,34 @@
+{
+	"info": {
+		"_postman_id": "c8b9ec3e-bb3c-4a71-b0fe-56c302724b1f",
+		"name": "CMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34816005",
+		"_collection_link": "https://budget-control-7459.postman.co/workspace/Budgetcontrol~38440e7f-5860-46ac-b759-9f7c9eaef094/collection/34816005-c8b9ec3e-bb3c-4a71-b0fe-56c302724b1f?action=share&source=collection_link&creator=34816005"
+	},
+	"item": [
+		{
+			"name": "Clear cache",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/wordpress/posts/clear-cache/{cacheKey}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wordpress",
+						"posts",
+						"clear-cache",
+						"{cacheKey}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
