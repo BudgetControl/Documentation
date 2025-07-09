@@ -12,6 +12,6 @@ We would like to express our gratitude to all the contributors who have helped m
 
 ## Want to Contribute?
 
-If you would like to contribute to this project, please check our [Contribution Guidelines](./Contributing.md).
+If you would like to contribute to this project, please check our [Contribution Guidelines](./intro.md).
 
 Thank you for your support!

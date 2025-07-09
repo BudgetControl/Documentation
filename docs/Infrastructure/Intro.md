@@ -18,7 +18,7 @@ This document provides an overview of the BudgetControl application infrastructu
 
 ## Architecture Diagram
 
-![BudgetControl Architecture Diagram](/static/img/infrastructure-graph.png)
+![BudgetControl Architecture Diagram](/img/infrastructure-graph.png)
 
 ```mermaid
 graph TD

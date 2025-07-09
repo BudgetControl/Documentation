@@ -142,7 +142,7 @@ php artisan serve --port=8084
 docker run --name budget_postgres -e POSTGRES_DB=budget_control -e POSTGRES_USER=budget_control -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres:15
 
 # Run migrations for all microservices
-./scripts/migrate-all.sh
+docker exec budgetcontrol-ms-jobs bash -c="vendor/bin/phinx migrate"
 ```
 
 #### Redis (Caching)
@@ -272,14 +272,14 @@ docker-compose build --parallel
 
 Once your environment is set up:
 
-1. Read the [Architecture Documentation](../Infrastructure/Intro.md)
+1. Read the [Architecture Documentation](../../Infrastructure/Intro.md)
 2. Review [Coding Standards](./coding-standards.md)
 3. Check the [API Documentation](/api)
 4. Join our [Discord community](https://discord.gg/TtMTeUbSpW)
 
 ## Need Help?
 
-- Check our [FAQ](../faq.md)
+- Check our [FAQ](../../faq.md)
 - Open an issue on GitHub
 - Ask on Discord
 - Review existing documentation

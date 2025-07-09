@@ -41,10 +41,6 @@ BudgetControl leverages PostgreSQL through:
 3. **Triggers**: For data validation and integrity maintenance
 4. **Optimized Indexing**: Tailored for common query patterns
 
-## Connection Information
-
-Connection details and configuration settings are stored securely in environment files. See the [Database Configuration](./Configuration.md) document for details.
-
 ## Maintenance
 
 Regular maintenance procedures include:
@@ -57,5 +53,3 @@ Regular maintenance procedures include:
 ## Further Reading
 
 - [PostgreSQL Official Documentation](https://www.postgresql.org/docs/)
-- [Database Schema](./Schema.md)
-- [Migration Procedures](./Migrations.md)
