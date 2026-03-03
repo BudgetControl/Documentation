@@ -8,6 +8,7 @@ on:
 permissions:
   contents: read
 
+
 jobs:
   deploy_job:
     runs-on: ubuntu-latest
@@ -23,16 +24,23 @@ jobs:
         - name: Build package
           run: npm run build
         
-        - name: Configure AWS credentials
-          uses: aws-actions/configure-aws-credentials@v4
+        - name: deploy file
+          uses: wlixcc/SFTP-Deploy-Action@v1.2.4
           with:
-            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            aws-region: ${{ secrets.AWS_REGION }}
+              username: ${{ secrets.SFTP_USER }} 
+              server: ${{ secrets.SFTP_HOST }} 
+              ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} 
+              password: ${{ secrets.SFTP_PASSWORD }} 
+              local_path: './build/*'
+              remote_path: '/var/www/budgetcontrol/Docusaurus/build'
+              sftpArgs: '-o ConnectTimeout=5'
 
-        - name: Deploy to S3
-          run: aws s3 sync ./build/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
-
-        - name: Invalidate CloudFront
-          run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+        - name: copy build folder into container
+          uses: appleboy/ssh-action@v1.0.3
+          with:
+            host: ${{ secrets.SFTP_HOST }}
+            username: ${{ secrets.SFTP_USER }}
+            password: ${{ secrets.SFTP_PASSWORD }}
+            port: 22
+            script: docker cp /var/www/budgetcontrol/Docusaurus/build/. budgetcontrol-docusaurus:/var/www/workdir/build/
   
