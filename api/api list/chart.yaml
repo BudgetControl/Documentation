@@ -238,3 +238,81 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+
+  /api/stats/chart/bar/expenses/category:
+    get:
+      summary: Bar chart - expenses by category
+      description: Retrieve bar chart data for expenses grouped by category
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: date_time[0][start]
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "2024/06/01"
+        - name: date_time[0][end]
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "2024/06/30"
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /api/stats/chart/bar/expenses/label:
+    get:
+      summary: Bar chart - expenses by label
+      description: Retrieve bar chart data for expenses grouped by label
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: date_time[0][start]
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "2024/06/01"
+        - name: date_time[0][end]
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "2024/06/30"
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object

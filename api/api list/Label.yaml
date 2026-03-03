@@ -1,0 +1,105 @@
+openapi: 3.0.0
+info:
+  title: Label API
+  version: 1.0.0
+servers:
+  - url: https://dev.app.budgetcontrol.cloud
+paths:
+  /api/label/list:
+    get:
+      summary: List labels
+      description: Retrieve the list of labels for the current workspace
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          description: JWT token with user account
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          description: UUID of the workspace
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Label'
+
+  /api/label/{uuid}:
+    put:
+      summary: Update label
+      description: Update an existing label
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Label'
+      responses:
+        '200':
+          description: Label updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Label'
+
+components:
+  schemas:
+    Label:
+      type: object
+      properties:
+        uuid:
+          type: string
+          example: "6363940f361d4"
+        name:
+          type: string
+          example: "risparmi"
+        color:
+          type: string
+          example: "#EB31E3"
+        archive:
+          type: boolean
+          example: false
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        deleted_at:
+          type: string
+          format: date-time
+          nullable: true
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

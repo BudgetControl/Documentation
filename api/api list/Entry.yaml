@@ -209,6 +209,63 @@ paths:
         '200':
           description: Successful response
 
+  /api/entry/{uuid}:
+    get:
+      summary: Get entry by UUID
+      description: Retrieve a specific entry by its UUID
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entry'
+
+    delete:
+      summary: Delete entry
+      description: Delete an entry by UUID
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '204':
+          description: Entry deleted successfully
+
   /api/entry/planned/{id}:
     put:
       summary: Update planned entry

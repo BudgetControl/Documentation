@@ -1,0 +1,109 @@
+openapi: 3.0.0
+info:
+  title: Savings API
+  version: 1.0.0
+servers:
+  - url: https://dev.app.budgetcontrol.cloud
+paths:
+  /api/entry/saving:
+    post:
+      summary: Add saving entry
+      description: Create a new saving entry linked to a goal
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          description: JWT token with user account
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          description: UUID of the workspace
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - amount
+                - account_id
+                - category_id
+                - currency_id
+                - payment_type
+                - date_time
+                - type
+              properties:
+                amount:
+                  type: number
+                  example: 100
+                note:
+                  type: string
+                  nullable: true
+                  example: null
+                labels:
+                  type: array
+                  items:
+                    type: integer
+                  example: []
+                account_id:
+                  type: integer
+                  example: 9
+                category_id:
+                  type: integer
+                  example: 16
+                currency_id:
+                  type: integer
+                  example: 2
+                payment_type:
+                  type: integer
+                  example: 1
+                uuid:
+                  type: string
+                  nullable: true
+                  example: null
+                transfer_id:
+                  type: boolean
+                  example: false
+                date_time:
+                  type: string
+                  format: date-time
+                  example: "2025-03-18 09:02:09"
+                confirmed:
+                  type: boolean
+                  example: true
+                waranty:
+                  type: boolean
+                  example: false
+                planning:
+                  type: integer
+                  example: 0
+                end_date_time:
+                  type: string
+                  nullable: true
+                  example: null
+                exclude_from_stats:
+                  type: boolean
+                  example: false
+                type:
+                  type: string
+                  example: "saving"
+                goal_id:
+                  type: string
+                  format: uuid
+                  example: "da66739d-4d21-4ef3-aef0-08cd1cde11a9"
+      responses:
+        '201':
+          description: Saving entry created successfully
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,58 @@
+openapi: 3.0.0
+info:
+  title: Webhook API
+  version: 1.0.0
+servers:
+  - url: https://dev.app.budgetcontrol.cloud
+paths:
+  /webhook/create:
+    post:
+      summary: Create webhook
+      description: Register a new webhook endpoint
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                domain:
+                  type: string
+                  example: "https://dev.budgetcontrol.cloud"
+      responses:
+        '201':
+          description: Webhook created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uuid:
+                    type: string
+                    format: uuid
+
+  /webhook/http/{uuid}/test:
+    get:
+      summary: Test webhook
+      description: Invoke a webhook to test its connectivity
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Webhook invoked successfully
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

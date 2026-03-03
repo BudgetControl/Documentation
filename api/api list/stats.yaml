@@ -273,6 +273,253 @@ paths:
                       description: Total passed incoming entries
 
 security:
+
+  /api/stats/average-incoming:
+    get:
+      summary: Get average incoming
+      description: Retrieve average incoming statistics
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  average:
+                    type: number
+
+  /api/stats/average-expenses:
+    get:
+      summary: Get average expenses
+      description: Retrieve average expenses statistics
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  average:
+                    type: number
+
+  /api/stats/average-savings:
+    get:
+      summary: Get average savings
+      description: Retrieve average savings statistics
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  average:
+                    type: number
+
+  /api/stats/total/planned:
+    get:
+      summary: Get total with planned entries
+      description: Retrieve total statistics including planned entries
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: number
+
+  /api/stats/total/planned/remaining:
+    get:
+      summary: Get remaining planned installments
+      description: Retrieve the total remaining planned loan installments
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: number
+
+  /api/stats/total/planned/monthly:
+    get:
+      summary: Get total planned monthly
+      description: Retrieve total planned entries for the current month
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: number
+
+  /api/stats/entries:
+    post:
+      summary: Get stats for filtered entries
+      description: Retrieve statistics for entries matching the given filters
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Bc-Ws
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: object
+                  properties:
+                    start:
+                      type: string
+                      format: date-time
+                      example: "2024-10-01T00:00:00.000Z"
+                    end:
+                      type: string
+                      format: date-time
+                      example: "2024-10-31T23:59:59.000Z"
+                categories:
+                  type: array
+                  items:
+                    type: integer
+                  example: []
+                wallets:
+                  type: array
+                  items:
+                    type: integer
+                  example: []
+                types:
+                  type: array
+                  items:
+                    type: string
+                  example: []
+                currencies:
+                  type: array
+                  items:
+                    type: integer
+                  example: []
+                payment_methods:
+                  type: array
+                  items:
+                    type: integer
+                  example: []
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: []
+                accounts:
+                  type: array
+                  items:
+                    type: integer
+                  example: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+
 components:
   securitySchemes:
     BearerAuth:

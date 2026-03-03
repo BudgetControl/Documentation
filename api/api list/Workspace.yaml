@@ -212,6 +212,107 @@ paths:
                         type: string
                         description: Subject of the user
                         example: 3df00db8-d946-412f-8a06-95d0b48c8bb2
+  /api/workspace/create:
+    post:
+      summary: Create workspace
+      description: Create a new workspace
+      parameters:
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                workspace:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: "test"
+                    currency:
+                      type: integer
+                      example: 1
+                    payment_type:
+                      type: integer
+                      example: 1
+                share_with:
+                  type: array
+                  items:
+                    type: string
+                  example: []
+      responses:
+        '201':
+          description: Workspace created successfully
+
+  /api/workspace/{uuid}/share:
+    post:
+      summary: Share workspace
+      description: Share a workspace with another user
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_to_share:
+                  type: string
+                  format: email
+                  example: "user@example.com"
+      responses:
+        '200':
+          description: Workspace shared successfully
+
+  /api/workspace/{uuid}/unshare/{userUuid}:
+    delete:
+      summary: Unshare workspace
+      description: Remove a user's access to a shared workspace
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: userUuid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Bc-Token
+          in: header
+          required: true
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        '204':
+          description: User removed from workspace
+
   /api/workspace/{uuid}:
     get:
       summary: Get workspace by UUID
