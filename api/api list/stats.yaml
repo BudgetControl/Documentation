@@ -272,7 +272,6 @@ paths:
                       type: integer
                       description: Total passed incoming entries
 
-security:
 
   /api/stats/average-incoming:
     get:
