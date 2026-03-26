@@ -33,7 +33,7 @@ BudgetControl is architected using a microservices infrastructure, which ensures
 - MailerService: Enables effective communication with users by sending customized email notifications.
 
 ### Gateway
-The application utilizes a PHP Laravel 11 Gateway as the entry point, serving as the central hub that coordinates communication between the various microservices. This gateway ensures secure and efficient routing of requests, as well as providing additional layers of functionality such as API management, authentication, and rate limiting.
+The application utilizes a Custom developed PHP Gateway as the entry point, serving as the central hub that coordinates communication between the various microservices. This gateway ensures secure and efficient routing of requests, as well as providing additional layers of functionality such as API management, authentication, and rate limiting.
 
 ### Progressive Web Application (PWA)
 BudgetControl is designed as a Progressive Web Application (PWA), offering a seamless and responsive user experience. Built with Vue.js 3, the application combines the best features of web and mobile applications, including offline access, push notifications, and the ability to be installed on a user's device like a native app. This ensures that users can manage their finances anytime, anywhere, even without a constant internet connection.

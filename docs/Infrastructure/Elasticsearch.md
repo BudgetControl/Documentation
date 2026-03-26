@@ -1,44 +1,44 @@
 # Elasticsearch
 
-BudgetControl utilizza **Elasticsearch** come motore di ricerca e analisi dei dati per la generazione delle statistiche all'interno dell'applicazione.
+BudgetControl uses **Elasticsearch** as its search and data analytics engine for generating statistics within the application.
 
-## Panoramica
+## Overview
 
-Elasticsearch è un motore di ricerca e analisi distribuito, basato su Apache Lucene. Nel contesto di BudgetControl, viene impiegato dal microservizio `budgetcontrol-ms-stats` per aggregare, indicizzare e interrogare i dati finanziari degli utenti al fine di produrre report e statistiche in tempo reale.
+Elasticsearch is a distributed search and analytics engine based on Apache Lucene. In the context of BudgetControl, it is used by the `budgetcontrol-ms-stats` microservice to aggregate, index, and query users' financial data in order to produce reports and real-time statistics.
 
-## Ruolo nell'architettura
+## Role in the Architecture
 
-Il microservizio dedicato alle statistiche (`budgetcontrol-ms-stats`, porta `8084`) invia e recupera i dati da Elasticsearch tramite query di aggregazione. I dati finanziari (entrate, uscite, budget, risparmi, ecc.) vengono indicizzati in Elasticsearch per consentire interrogazioni analitiche rapide ed efficienti, senza gravare sul database PostgreSQL principale.
+The statistics microservice (`budgetcontrol-ms-stats`, port `8084`) sends and retrieves data from Elasticsearch via aggregation queries. Financial data (income, expenses, budgets, savings, etc.) is indexed in Elasticsearch to enable fast and efficient analytical queries, without putting load on the main PostgreSQL database.
 
 ```mermaid
 graph TD
     Microservices[Microservices Cluster] --> StatsMS[budgetcontrol-ms-stats :8084]
     StatsMS --> Elasticsearch[(Elasticsearch)]
-    Elasticsearch --> Aggregations[Aggregazioni & Statistiche]
+    Elasticsearch --> Aggregations[Aggregations & Statistics]
     Aggregations --> StatsMS
 ```
 
-## Casi d'uso
+## Use Cases
 
-- **Statistiche di spesa**: calcolo di totali, medie e trend per periodo (giornaliero, mensile, annuale)
-- **Report per categoria**: aggregazione delle transazioni per categoria di spesa o entrata
-- **Analisi dei wallet**: andamento del saldo dei portafogli nel tempo
-- **Budget vs consuntivo**: confronto tra budget pianificato e spese effettive
-- **Statistiche sui risparmi e obiettivi**: monitoraggio del progresso verso goal e piani di risparmio
+- **Spending statistics**: calculation of totals, averages, and trends by period (daily, monthly, yearly)
+- **Reports by category**: aggregation of transactions by spending or income category
+- **Wallet analysis**: wallet balance trends over time
+- **Budget vs actual**: comparison between planned budget and actual expenses
+- **Savings and goals statistics**: tracking progress toward saving goals and plans
 
-## Configurazione
+## Configuration
 
-Elasticsearch è deployato come container Docker all'interno del cluster e comunicato esclusivamente ai microservizi interni tramite la rete Docker privata.
+Elasticsearch is deployed as a Docker container within the cluster and is only accessible to internal microservices via the private Docker network.
 
-| Parametro | Valore |
-|-----------|--------|
-| Versione | 8.x |
-| Porta interna | 9200 |
-| Accesso esterno | Non esposto |
+| Parameter | Value |
+|-----------|-------|
+| Version | 8.x |
+| Internal port | 9200 |
+| External access | Not exposed |
 
-## Indicizzazione dei dati
+## Data Indexing
 
-I dati vengono indicizzati in Elasticsearch in modo asincrono tramite il sistema di **Jobs/Queue** di Laravel (`budgetcontrol-ms-jobs`). Ogni volta che un'entrata, uscita o operazione finanziaria viene creata o aggiornata, un job si occupa di sincronizzare il documento corrispondente nell'indice Elasticsearch appropriato.
+Data is indexed into Elasticsearch asynchronously via Laravel's **Jobs/Queue** system (`budgetcontrol-ms-jobs`). Whenever an income entry, expense, or financial operation is created or updated, a job is responsible for syncing the corresponding document into the appropriate Elasticsearch index.
 
 ```mermaid
 sequenceDiagram
@@ -48,9 +48,9 @@ sequenceDiagram
     participant JobsMS as ms-jobs
     participant ES as Elasticsearch
 
-    User->>Gateway: Crea transazione
+    User->>Gateway: Create transaction
     Gateway->>EntriesMS: POST /entries
-    EntriesMS->>JobsMS: Dispatch job di indicizzazione
-    JobsMS->>ES: Index documento
-    ES-->>JobsMS: Conferma
+    EntriesMS->>JobsMS: Dispatch indexing job
+    JobsMS->>ES: Index document
+    ES-->>JobsMS: Confirmation
 ```
